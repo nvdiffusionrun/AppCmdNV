@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application de Commande NV Diffusion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div id="delivery-date-controls">
+            <label>Livraison souhaitée :</label>
+            <span id="delivery-date-display"></span>
+            <button id="increment-date-btn">+</button>
+        </div>
+        <h1>Application de Commande NV Diffusion</h1>
+        <div id="cart-status">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span id="cart-item-count">0</span>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="left-panel">
+            <section id="client-selection">
+                <h2>1. Sélection du Client</h2>
+                
+                <div class="client-controls">
+                    <div class="filter-group">
+                        <label for="secteur-select">Filtrer par Secteur:</label>
+                        <select id="secteur-select"></select>
+                    </div>
+
+                    <div class="filter-group client-search">
+                        <label for="client-search-input">Rechercher un Client (Nom/Code):</label>
+                        <input type="text" id="client-search-input" placeholder="Commencez à taper le nom ou le code...">
+                        <div id="client-suggestions" class="suggestions-dropdown"></div>
+                    </div>
+                </div>
+
+                <p class="selected-info">Client Sélectionné: 
+                    <strong id="selected-client-info">Aucun</strong>
+                </p>
+            </section>
+
+            <hr>
+
+            <section id="articles-section">
+                <h2>2. Choisir les Articles</h2>
+                
+                <div id="article-controls"> 
+                    <div class="filter-group">
+                        <label for="famille-select">Filtrer par Famille:</label>
+                        <select id="famille-select"></select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="article-search-input">Recherche (Code/Désignation):</label>
+                        <input type="text" id="article-search-input" placeholder="Rechercher un article...">
+                    </div>
+                </div>
+                
+                <div id="articles-container" class="data-table-container">
+                    <p>Chargement des articles...</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="right-panel">
+            <section id="cart-section">
+                <h2>3. Panier de Commande</h2>
+                
+                <p>Client : <strong id="client-cart-name">Aucun client sélectionné</strong></p>
+
+                <div id="cart-container" class="data-table-container">
+                    <p>Le panier est vide.</p>
+                </div>
+
+                <div id="cart-total-info">
+                    </div>
+
+                <button id="checkout-btn" disabled>Finaliser et Envoyer la Commande par E-mail</button>
+            </section>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
