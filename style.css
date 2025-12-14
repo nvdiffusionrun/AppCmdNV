@@ -49,6 +49,15 @@ body {
     color: white;
 }
 
+#decrement-date-btn {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 2px 9px; /* Léger ajustement pour centrer le '-' */
+    line-height: 1;
+    background-color: #dc3545;
+    color: white;
+}
+
 #cart-status {
     display: flex;
     align-items: center;

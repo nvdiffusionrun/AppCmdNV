@@ -15,6 +15,7 @@ let filteredClients = [];
 let selectedClient = null; 
 let cart = []; // Panier de commande [{ code, designation, prixHT, quantite, total }]
 let deliveryDate = new Date(); // NOUVEAU: Date de livraison
+let initialDeliveryDate = new Date(); // Pour ne pas décrémenter dans le passé
 
 // Noms des colonnes clients (normalisés)
 const CLIENT_CODE_FIELD = 'Code'; 
@@ -131,18 +132,20 @@ function displayDeliveryDate() {
 /** Calcule et définit la date de livraison initiale. */
 function calculateAndSetInitialDeliveryDate() {
     let nextDay = new Date();
+    nextDay.setHours(0, 0, 0, 0); // Normaliser à minuit
     nextDay.setDate(nextDay.getDate() + 1); // Jour suivant
 
     // Si demain est un samedi (6), on reporte au mardi (+3 jours)
     if (nextDay.getDay() === 6) { 
         nextDay.setDate(nextDay.getDate() + 3);
     } 
-    // Si demain est un dimanche (0), on reporte au lundi (+1 jour)
+    // Si demain est un dimanche (0), on reporte au mardi (+2 jour)
     else if (nextDay.getDay() === 0) { 
-        nextDay.setDate(nextDay.getDate() + 1);
+        nextDay.setDate(nextDay.getDate() + 2);
     }
     
-    deliveryDate = nextDay;
+    deliveryDate = new Date(nextDay); // Crée une nouvelle instance
+    initialDeliveryDate = new Date(nextDay); // Stocke la date initiale
     displayDeliveryDate();
 }
 
@@ -150,13 +153,42 @@ function calculateAndSetInitialDeliveryDate() {
 function incrementDeliveryDate() {
     deliveryDate.setDate(deliveryDate.getDate() + 1);
 
-    // Si on tombe sur un samedi, on saute au lundi (+2 jours)
+    // Si on tombe sur un samedi, on saute au mardi (+3 jours)
     if (deliveryDate.getDay() === 6) {
-        deliveryDate.setDate(deliveryDate.getDate() + 2);
+        deliveryDate.setDate(deliveryDate.getDate() + 3);
     } 
-    // Si on tombe sur un dimanche, on saute au lundi (+1 jour)
+    // Si on tombe sur un dimanche, on saute au mardi (+2 jour)
     else if (deliveryDate.getDay() === 0) {
-        deliveryDate.setDate(deliveryDate.getDate() + 1);
+        deliveryDate.setDate(deliveryDate.getDate() + 2);
+    }
+
+    displayDeliveryDate();
+}
+
+/** Décrémente la date de livraison, en sautant les week-ends. */
+function decrementDeliveryDate() {
+    let tempDate = new Date(deliveryDate);
+    tempDate.setDate(tempDate.getDate() - 1);
+
+    // Si la nouvelle date est avant la date de livraison initiale, on ne fait rien
+    if (tempDate < initialDeliveryDate) {
+        return; 
+    }
+
+    // Si on tombe sur un dimanche, on saute au vendredi (-2 jours)
+    if (tempDate.getDay() === 0) {
+        tempDate.setDate(tempDate.getDate() - 2);
+    } 
+    // Si on tombe sur un samedi, on saute au vendredi (-1 jour)
+    else if (tempDate.getDay() === 6) {
+        tempDate.setDate(tempDate.getDate() - 1);
+    }
+    
+    // Vérification finale pour ne pas aller avant la date initiale après un saut
+    if (tempDate < initialDeliveryDate) {
+        deliveryDate = new Date(initialDeliveryDate);
+    } else {
+        deliveryDate = tempDate;
     }
 
     displayDeliveryDate();
@@ -584,29 +616,53 @@ function updateSelectedClientInfo(client) {
 function setupClientSearch() {
     const input = document.getElementById('client-search-input');
     const suggestionsContainer = document.getElementById('client-suggestions');
+    let currentMatches = [];
+
     input.addEventListener('input', function(e) {
         const value = this.value.toUpperCase();
         suggestionsContainer.innerHTML = ""; 
+        currentMatches = [];
+
         if (!value) return false;
+
         const matches = filteredClients.filter(client => {
             if (!client || !client[CLIENT_NAME_FIELD] || !client[CLIENT_CODE_FIELD]) return false; 
+
             const clientName = client[CLIENT_NAME_FIELD].toUpperCase();
             const clientCode = client[CLIENT_CODE_FIELD].toUpperCase();
             return clientName.includes(value) || clientCode.includes(value);
         }).slice(0, 10); 
+
+        currentMatches = matches;
+
         matches.forEach(client => {
             const item = document.createElement('div');
             item.className = 'suggestion-item';
             const clientCommune = client[CLIENT_CITY_FIELD] ? ` - ${client[CLIENT_CITY_FIELD]}` : '';
             item.innerHTML = `<strong>${client[CLIENT_NAME_FIELD]}</strong> (${client[CLIENT_CODE_FIELD]}${clientCommune})`;
+
             item.addEventListener('click', function(e) {
                 input.value = client[CLIENT_NAME_FIELD];
                 suggestionsContainer.innerHTML = "";
                 updateSelectedClientInfo(client); 
             });
+
             suggestionsContainer.appendChild(item);
         });
     });
+
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Empêche la soumission de formulaire
+            if (currentMatches.length > 0) {
+                const topClient = currentMatches[0];
+                input.value = topClient[CLIENT_NAME_FIELD];
+                suggestionsContainer.innerHTML = "";
+                updateSelectedClientInfo(topClient);
+            }
+        }
+    });
+
     document.addEventListener("click", function (e) {
         if (!e.target.matches('#client-search-input')) {
             suggestionsContainer.innerHTML = "";
@@ -696,6 +752,7 @@ async function initApp() {
     // Logique de date
     calculateAndSetInitialDeliveryDate();
     document.getElementById('increment-date-btn').addEventListener('click', incrementDeliveryDate);
+    document.getElementById('decrement-date-btn').addEventListener('click', decrementDeliveryDate);
 
     // Ajustement du header sticky
     adjustStickyHeader();
