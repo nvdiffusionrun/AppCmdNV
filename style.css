@@ -87,14 +87,14 @@ body {
     padding: 20px;
 }
 
-.left-panel {
+.content-panel {
     flex: 2;
     /* Allow scrolling on the left panel */
     max-height: calc(100vh - 100px); /* Adjust based on header height */
     overflow-y: auto;
 }
 
-.right-panel {
+.cart-panel {
     flex: 1;
     position: sticky;
     top: 80px; /* Match header height */
@@ -433,14 +433,14 @@ tr.low-stock .add-to-cart-btn:hover {
         padding: 10px;
     }
 
-    .left-panel {
+    .content-panel {
         max-height: none;
         overflow-y: visible;
         width: 100%;
     }
 
     /* On cache les éléments du desktop */
-    .right-panel {
+    .cart-panel {
         display: none;
     }
     #cart-status {

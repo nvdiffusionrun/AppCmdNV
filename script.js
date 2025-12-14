@@ -763,7 +763,7 @@ async function initApp() {
     const fabCartBtn = document.getElementById('fab-cart-btn');
     const cartSection = document.getElementById('cart-section');
     const cartModalContent = document.getElementById('cart-modal-content');
-    const rightPanel = document.querySelector('.right-panel');
+    const cartPanel = document.querySelector('.cart-panel');
 
     fabCartBtn.addEventListener('click', () => {
         cartModalContent.appendChild(cartSection);
@@ -771,7 +771,7 @@ async function initApp() {
     });
 
     const closeOverlay = () => {
-        rightPanel.appendChild(cartSection); // Remettre le panier à sa place
+        cartPanel.appendChild(cartSection); // Remettre le panier à sa place
         cartOverlay.classList.add('hidden');
     };
 
@@ -787,7 +787,7 @@ async function initApp() {
         const isMobile = window.innerWidth <= 1024;
         if (!isMobile) {
             // Si on est en vue desktop, s'assurer que le panier est dans le panneau de droite
-            rightPanel.appendChild(cartSection);
+            cartPanel.appendChild(cartSection);
         }
     };
 

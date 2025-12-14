@@ -22,7 +22,24 @@
     </header>
 
     <div class="main-content">
-        <div class="left-panel">
+        <div class="cart-panel">
+            <section id="cart-section">
+                <h2>3. Panier de Commande</h2>
+                
+                <p>Client : <strong id="client-cart-name">Aucun client sélectionné</strong></p>
+
+                <div id="cart-container" class="data-table-container">
+                    <p>Le panier est vide.</p>
+                </div>
+
+                <div id="cart-total-info">
+                    </div>
+
+                <button id="checkout-btn" disabled>Finaliser et Envoyer la Commande par E-mail</button>
+            </section>
+        </div>
+
+        <div class="content-panel">
             <section id="client-selection">
                 <h2>1. Sélection du Client</h2>
                 
@@ -63,23 +80,6 @@
                 <div id="articles-container" class="data-table-container">
                     <p>Chargement des articles...</p>
                 </div>
-            </section>
-        </div>
-
-        <div class="right-panel">
-            <section id="cart-section">
-                <h2>3. Panier de Commande</h2>
-                
-                <p>Client : <strong id="client-cart-name">Aucun client sélectionné</strong></p>
-
-                <div id="cart-container" class="data-table-container">
-                    <p>Le panier est vide.</p>
-                </div>
-
-                <div id="cart-total-info">
-                    </div>
-
-                <button id="checkout-btn" disabled>Finaliser et Envoyer la Commande par E-mail</button>
             </section>
         </div>
     </div>
