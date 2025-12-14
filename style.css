@@ -61,7 +61,7 @@ body {
 #cart-status {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Aligne le contenu à droite */
+    justify-content: flex-start; /* Aligne le contenu à gauche */
     font-size: 1.2em;
     font-weight: bold;
     flex: 1; /* Prend 1/3 de la place */
