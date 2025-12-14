@@ -331,15 +331,21 @@ function generateMailBody(client, cart, totalHT, tvaAmount, totalTTC, formattedD
     return body;
 }
 
+function updateCartItemCount(totalItems) {
+    const headerCount = document.getElementById('cart-item-count');
+    const fabCount = document.getElementById('fab-cart-item-count');
+    if (headerCount) headerCount.textContent = totalItems;
+    if (fabCount) fabCount.textContent = totalItems;
+}
+
 function displayCart() {
     const container = document.getElementById('cart-container');
     const totalInfo = document.getElementById('cart-total-info');
     const clientName = document.getElementById('client-cart-name');
     const checkoutBtn = document.getElementById('checkout-btn');
-    const cartItemCount = document.getElementById('cart-item-count');
-
+    
     const totalItems = cart.reduce((sum, item) => sum + item.quantite, 0);
-    cartItemCount.textContent = totalItems;
+    updateCartItemCount(totalItems);
 
     clientName.textContent = selectedClient ? selectedClient[CLIENT_NAME_FIELD] : "Aucun client sélectionné";
 
@@ -374,18 +380,18 @@ function displayCart() {
 
         cartHTML += `
             <tr ${rowClass}>
-                <td>${item.code}</td>
-                <td>${item.designation}${backorderLabel}</td>
-                <td>${item.prixHT.toFixed(2)} €</td>
-                <td>
+                <td data-label="Code">${item.code}</td>
+                <td data-label="Désignation">${item.designation}${backorderLabel}</td>
+                <td data-label="PU HT">${item.prixHT.toFixed(2)} €</td>
+                <td data-label="Quantité">
                     <div class="cart-qty-control">
                         <button data-code="${item.code}" data-action="decrease" class="qty-control-btn">-</button>
                         <span class="cart-qty-value">${item.quantite}</span>
                         <button data-code="${item.code}" data-action="increase" class="qty-control-btn">+</button>
                     </div>
                 </td>
-                <td>${item.total.toFixed(2)} €</td>
-                <td><button data-code="${item.code}" class="remove-from-cart-btn">Retirer</button></td>
+                <td data-label="Total HT">${item.total.toFixed(2)} €</td>
+                <td data-label="Action"><button data-code="${item.code}" class="remove-from-cart-btn">Retirer</button></td>
             </tr>
         `;
     });
@@ -563,12 +569,12 @@ function filterAndDisplayArticles(family = null, query = null) {
         const buttonText = isBackorder ? 'Mettre en attente' : 'Ajouter';
         html += `
             <tr ${rowClass}>
-                <td>${article[ARTICLE_CODE_FIELD]}</td>
-                <td>${article[ARTICLE_DESIGNATION_FIELD]}</td>
-                <td>${parseFloat(prixDynamique).toFixed(2)} €</td>
-                <td>${stockText}</td>
-                <td><input type="number" value="1" min="1" class="article-qty-input" id="qty-${article[ARTICLE_CODE_FIELD]}"></td>
-                <td><button data-code="${article[ARTICLE_CODE_FIELD]}" class="add-to-cart-btn">${buttonText}</button></td>
+                <td data-label="Code">${article[ARTICLE_CODE_FIELD]}</td>
+                <td data-label="Désignation">${article[ARTICLE_DESIGNATION_FIELD]}</td>
+                <td data-label="Prix HT">${parseFloat(prixDynamique).toFixed(2)} €</td>
+                <td data-label="Stock">${stockText}</td>
+                <td data-label="Qté"><input type="number" value="1" min="1" class="article-qty-input" id="qty-${article[ARTICLE_CODE_FIELD]}"></td>
+                <td data-label="Action"><button data-code="${article[ARTICLE_CODE_FIELD]}" class="add-to-cart-btn">${buttonText}</button></td>
             </tr>
         `;
     });
@@ -750,6 +756,43 @@ async function initApp() {
     // Ajustement du header sticky
     adjustStickyHeader();
     window.addEventListener('resize', adjustStickyHeader);
+
+    // NOUVEAU: Logique pour la UI mobile
+    const cartOverlay = document.getElementById('cart-overlay');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const fabCartBtn = document.getElementById('fab-cart-btn');
+    const cartSection = document.getElementById('cart-section');
+    const cartModalContent = document.getElementById('cart-modal-content');
+    const rightPanel = document.querySelector('.right-panel');
+
+    fabCartBtn.addEventListener('click', () => {
+        cartModalContent.appendChild(cartSection);
+        cartOverlay.classList.remove('hidden');
+    });
+
+    const closeOverlay = () => {
+        // Laisser le cartSection dans la modale, il sera remis en place par le resize handler
+        cartOverlay.classList.add('hidden');
+    };
+
+    closeCartBtn.addEventListener('click', closeOverlay);
+    cartOverlay.addEventListener('click', (e) => {
+        if (e.target === cartOverlay) {
+            closeOverlay();
+        }
+    });
+
+    // Gère le repositionnement du panier lors du redimensionnement
+    const handleResize = () => {
+        const isMobile = window.innerWidth <= 1024;
+        if (!isMobile) {
+            // Si on est en vue desktop, s'assurer que le panier est dans le panneau de droite
+            rightPanel.appendChild(cartSection);
+        }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Appel initial
 }
 
 initApp();

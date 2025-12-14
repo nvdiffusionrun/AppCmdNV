@@ -348,19 +348,163 @@ tr.low-stock .add-to-cart-btn:hover {
     margin: 5px 0 0;
 }
 
+/* --- Styles pour la modale et le FAB (Mobile) --- */
+#cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+#cart-overlay.hidden {
+    display: none;
+}
+
+#cart-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+#close-cart-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2em;
+    line-height: 1;
+    background: none;
+    border: none;
+    color: #888;
+    padding: 0;
+}
+
+#fab-cart-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 900;
+    border: none;
+}
+
+#fab-cart-btn.hidden {
+    display: none;
+}
+
+#fab-cart-item-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 0.8em;
+    font-weight: bold;
+    min-width: 22px;
+    text-align: center;
+}
+
+
+/* --- Media Query pour le Responsive --- */
 @media (max-width: 1024px) {
     .main-content {
         flex-direction: column;
-    }
-
-    .right-panel {
-        position: static;
-        top: auto;
-        width: 100%;
+        padding: 10px;
     }
 
     .left-panel {
         max-height: none;
         overflow-y: visible;
+        width: 100%;
+    }
+
+    /* On cache les éléments du desktop */
+    .right-panel {
+        display: none;
+    }
+    #cart-status {
+        display: none;
+    }
+
+    /* On affiche les éléments du mobile */
+    #fab-cart-btn {
+        display: flex;
+    }
+    
+    /* Transformation des tableaux en cartes */
+    .data-table-container table, 
+    .data-table-container thead, 
+    .data-table-container tbody, 
+    .data-table-container th, 
+    .data-table-container td, 
+    .data-table-container tr {
+        display: block;
+    }
+
+    .data-table-container thead {
+        display: none; /* On cache les en-têtes du tableau */
+    }
+
+    .data-table-container tr {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .data-table-container td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%; /* Laisse de la place pour le label */
+        text-align: right;
+    }
+    .data-table-container td:last-child {
+        border-bottom: none;
+    }
+
+    .data-table-container td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Ajustements spécifiques pour les inputs et boutons dans les cellules */
+    .data-table-container td[data-label="Qté"],
+    .data-table-container td[data-label="Action"],
+    .data-table-container td[data-label="Quantité"] {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .cart-qty-control {
+        justify-content: flex-end;
     }
 }
