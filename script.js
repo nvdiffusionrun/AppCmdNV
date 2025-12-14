@@ -494,7 +494,7 @@ function checkoutOrder() {
 
 function setupFilters(data, fieldName, selectId, filterFunction) {
     const select = document.getElementById(selectId);
-    select.innerHTML = `<option value="ALL">Toutes les ${fieldName}</option>`;
+    select.innerHTML = `<option value="ALL">Toutes les ${fieldName}</option>s`;
     const uniqueValues = [...new Set(data.map(item => item[fieldName]).filter(val => val && val.trim() !== ''))].sort();
     uniqueValues.forEach(value => {
         const option = document.createElement('option');
