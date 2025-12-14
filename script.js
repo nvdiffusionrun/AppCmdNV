@@ -133,58 +133,41 @@ function displayDeliveryDate() {
 function calculateAndSetInitialDeliveryDate() {
     let nextDay = new Date();
     nextDay.setHours(0, 0, 0, 0); // Normaliser à minuit
-    nextDay.setDate(nextDay.getDate() + 1); // Jour suivant
+    nextDay.setDate(nextDay.getDate() + 1); // Commencer avec le jour suivant
 
-    // Si demain est un samedi (6), on reporte au mardi (+3 jours)
-    if (nextDay.getDay() === 6) { 
-        nextDay.setDate(nextDay.getDate() + 3);
-    } 
-    // Si demain est un dimanche (0), on reporte au mardi (+2 jour)
-    else if (nextDay.getDay() === 0) { 
-        nextDay.setDate(nextDay.getDate() + 2);
+    // Avancer jusqu'à un jour valide (Mardi à Vendredi)
+    while (nextDay.getDay() === 0 || nextDay.getDay() === 1 || nextDay.getDay() === 6) {
+        nextDay.setDate(nextDay.getDate() + 1);
     }
     
-    deliveryDate = new Date(nextDay); // Crée une nouvelle instance
-    initialDeliveryDate = new Date(nextDay); // Stocke la date initiale
+    deliveryDate = new Date(nextDay);
+    initialDeliveryDate = new Date(nextDay);
     displayDeliveryDate();
 }
 
-/** Incrémente la date de livraison, en sautant les week-ends. */
+/** Incrémente la date de livraison, en sautant les jours non ouvrés. */
 function incrementDeliveryDate() {
     deliveryDate.setDate(deliveryDate.getDate() + 1);
 
-    // Si on tombe sur un samedi, on saute au mardi (+3 jours)
-    if (deliveryDate.getDay() === 6) {
-        deliveryDate.setDate(deliveryDate.getDate() + 3);
-    } 
-    // Si on tombe sur un dimanche, on saute au mardi (+2 jour)
-    else if (deliveryDate.getDay() === 0) {
-        deliveryDate.setDate(deliveryDate.getDate() + 2);
+    // Avancer jusqu'à un jour valide (Mardi à Vendredi)
+    while (deliveryDate.getDay() === 0 || deliveryDate.getDay() === 1 || deliveryDate.getDay() === 6) {
+        deliveryDate.setDate(deliveryDate.getDate() + 1);
     }
 
     displayDeliveryDate();
 }
 
-/** Décrémente la date de livraison, en sautant les week-ends. */
+/** Décrémente la date de livraison, en sautant les jours non ouvrés. */
 function decrementDeliveryDate() {
     let tempDate = new Date(deliveryDate);
     tempDate.setDate(tempDate.getDate() - 1);
 
-    // Si la nouvelle date est avant la date de livraison initiale, on ne fait rien
-    if (tempDate < initialDeliveryDate) {
-        return; 
-    }
-
-    // Si on tombe sur un dimanche, on saute au vendredi (-2 jours)
-    if (tempDate.getDay() === 0) {
-        tempDate.setDate(tempDate.getDate() - 2);
-    } 
-    // Si on tombe sur un samedi, on saute au vendredi (-1 jour)
-    else if (tempDate.getDay() === 6) {
+    // Retourner jusqu'à un jour valide (Mardi à Vendredi)
+    while (tempDate.getDay() === 0 || tempDate.getDay() === 1 || tempDate.getDay() === 6) {
         tempDate.setDate(tempDate.getDate() - 1);
     }
-    
-    // Vérification finale pour ne pas aller avant la date initiale après un saut
+
+    // Si la date résultante est antérieure à la date initiale valide, on revient à la date initiale
     if (tempDate < initialDeliveryDate) {
         deliveryDate = new Date(initialDeliveryDate);
     } else {
@@ -494,7 +477,17 @@ function checkoutOrder() {
 
 function setupFilters(data, fieldName, selectId, filterFunction) {
     const select = document.getElementById(selectId);
-    select.innerHTML = `<option value="ALL">Toutes les ${fieldName}</option>s`;
+    let allOptionText = "";
+
+    if (fieldName === CLIENT_SECTEUR_FIELD) { // Secteur
+        allOptionText = "Tous les Secteurs";
+    } else if (fieldName === ARTICLE_FAMILY_FIELD) { // Famille
+        allOptionText = "Toutes les Familles";
+    } else {
+        allOptionText = `Toutes les ${fieldName}s`; // Generic pluralization
+    }
+
+    select.innerHTML = `<option value="ALL">${allOptionText}</option>`;
     const uniqueValues = [...new Set(data.map(item => item[fieldName]).filter(val => val && val.trim() !== ''))].sort();
     uniqueValues.forEach(value => {
         const option = document.createElement('option');
