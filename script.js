@@ -771,7 +771,7 @@ async function initApp() {
     });
 
     const closeOverlay = () => {
-        // Laisser le cartSection dans la modale, il sera remis en place par le resize handler
+        rightPanel.appendChild(cartSection); // Remettre le panier à sa place
         cartOverlay.classList.add('hidden');
     };
 
