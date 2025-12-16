@@ -49,18 +49,21 @@
                 <h2>2. Choisir les Articles</h2>
                 
                 <div id="article-controls"> 
-                    <div class="filter-group">
-                        <label for="famille-select">Filtrer par Famille:</label>
-                        <select id="famille-select"></select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="fournisseur-select">Filtrer par Fournisseur:</label>
-                        <select id="fournisseur-select"></select>
-                    </div>
                     <div class="filter-row">
                         <div class="filter-group">
                             <label for="article-search-input">Recherche (Code/Désignation):</label>
                             <input type="text" id="article-search-input" placeholder="Rechercher un article...">
+                        </div>
+                        <button id="toggle-filters-btn">Filtres</button>
+                    </div>
+                    <div id="advanced-filters" class="collapsible">
+                        <div class="filter-group">
+                            <label for="famille-select">Filtrer par Famille:</label>
+                            <select id="famille-select"></select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="fournisseur-select">Filtrer par Fournisseur:</label>
+                            <select id="fournisseur-select"></select>
                         </div>
                         <div class="filter-group">
                             <label for="default-qty-input">Qté par défaut:</label>

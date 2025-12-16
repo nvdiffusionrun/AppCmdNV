@@ -130,8 +130,13 @@ function displayDeliveryDate() {
     const displayEl = document.getElementById('delivery-date-display');
     if (!displayEl) return;
 
-    const options = { weekday: 'long', day: 'numeric', month: 'long' };
-    displayEl.textContent = deliveryDate.toLocaleDateString('fr-FR', options);
+    const options = { weekday: 'short', day: 'numeric', month: 'short' };
+    let formattedDate = deliveryDate.toLocaleDateString('fr-FR', options);
+    // Supprimer le point final que certains navigateurs ajoutent pour les abréviations
+    if (formattedDate.endsWith('.')) {
+        formattedDate = formattedDate.slice(0, -1);
+    }
+    displayEl.textContent = formattedDate;
 }
 
 /** Calcule et définit la date de livraison initiale. */
@@ -729,6 +734,18 @@ function setupDefaultQtyListener() {
     input.addEventListener('input', () => filterAndDisplayArticles());
 }
 
+function setupToggleFilters() {
+    const toggleBtn = document.getElementById('toggle-filters-btn');
+    const advancedFilters = document.getElementById('advanced-filters');
+
+    if (toggleBtn && advancedFilters) {
+        toggleBtn.addEventListener('click', () => {
+            const isVisible = advancedFilters.classList.toggle('visible');
+            toggleBtn.textContent = isVisible ? 'Moins de filtres' : 'Filtres';
+        });
+    }
+}
+
 function adjustStickyHeader() {
     const controls = document.getElementById('article-controls');
     if (!controls) return;
@@ -778,7 +795,8 @@ async function initApp() {
         setupFilters(appData.articles, ARTICLE_FAMILY_FIELD, 'famille-select', () => filterAndDisplayArticles());
         setupFilters(appData.articles, ARTICLE_SUPPLIER_FIELD, 'fournisseur-select', () => filterAndDisplayArticles()); // NOUVEAU
         setupArticleSearch();
-        setupDefaultQtyListener(); // NOUVEAU
+        setupDefaultQtyListener();
+        setupToggleFilters(); // NOUVEAU
         filterAndDisplayArticles(); 
     }
 

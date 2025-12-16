@@ -139,6 +139,27 @@ hr {
     width: 100%;
 }
 
+#toggle-filters-btn {
+    padding: 8px 12px;
+    background-color: #6c757d;
+    color: white;
+    flex-shrink: 0;
+}
+
+.collapsible {
+    display: none;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+}
+
+.collapsible.visible {
+    display: flex;
+}
+
 .filter-group label {
     display: block;
     font-weight: bold;
