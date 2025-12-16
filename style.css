@@ -452,6 +452,11 @@ tr.low-stock .add-to-cart-btn:hover {
         display: flex;
     }
     
+    /* On rend les filtres sticky sur mobile aussi */
+    #article-controls {
+        top: 60px; /* Hauteur approximative du header */
+    }
+
     /* Transformation des tableaux en cartes */
     .data-table-container table, 
     .data-table-container thead, 
