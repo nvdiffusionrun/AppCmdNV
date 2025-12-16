@@ -29,6 +29,7 @@ const CLIENT_EMAIL_FIELD = 'Email';
 // Noms des colonnes articles (normalisés)
 const ARTICLE_CODE_FIELD = 'CodeArticle';
 const ARTICLE_FAMILY_FIELD = 'Famille'; 
+const ARTICLE_SUPPLIER_FIELD = 'Fournisseur'; // NOUVEAU
 const ARTICLE_DESIGNATION_FIELD = 'Designation'; 
 
 // Noms des colonnes des prix que nous allons gérer
@@ -77,8 +78,9 @@ function parseCSV(csvText, separator, filename) {
         if (simpleFilename === 'BaseArticleTarifs.csv') {
             if (index === 0) return ARTICLE_CODE_FIELD; 
             if (index === 1) return ARTICLE_FAMILY_FIELD;
-            if (index === 2) return ARTICLE_DESIGNATION_FIELD;
-            if (index === 3) return PRICE_BASE; 
+            if (index === 2) return ARTICLE_SUPPLIER_FIELD; // NOUVEAU
+            if (index === 3) return ARTICLE_DESIGNATION_FIELD; // Décalé
+            if (index === 4) return PRICE_BASE; // Décalé
 
             if (upperCleaned.includes('|NPRO')) return PRICE_COIFFEUR_DOMICILE; 
             if (upperCleaned.includes('|TP')) return PRICE_PUBLIC; 
@@ -509,6 +511,8 @@ function setupFilters(data, fieldName, selectId, filterFunction) {
         allOptionText = "Tous les Secteurs";
     } else if (fieldName === ARTICLE_FAMILY_FIELD) { // Famille
         allOptionText = "Toutes les Familles";
+    } else if (fieldName === ARTICLE_SUPPLIER_FIELD) { // Fournisseur
+        allOptionText = "Tous les Fournisseurs";
     } else {
         allOptionText = `Toutes les ${fieldName}s`; // Generic pluralization
     }
@@ -522,7 +526,7 @@ function setupFilters(data, fieldName, selectId, filterFunction) {
         select.appendChild(option);
     });
     select.removeEventListener('change', filterFunction);
-    select.addEventListener('change', (e) => filterFunction(e.target.value));
+    select.addEventListener('change', filterFunction);
 }
 
 function filterClientsBySector(sector) {
@@ -541,13 +545,21 @@ function filterClientsBySector(sector) {
     }
 }
 
-function filterAndDisplayArticles(family = null, query = null) {
-    const currentFamily = family || document.getElementById('famille-select').value;
-    const currentQuery = (query || document.getElementById('article-search-input').value).toUpperCase();
+function filterAndDisplayArticles() {
+    const currentFamily = document.getElementById('famille-select').value;
+    const currentSupplier = document.getElementById('fournisseur-select').value; // NOUVEAU
+    const currentQuery = document.getElementById('article-search-input').value.toUpperCase();
+    const defaultQty = document.getElementById('default-qty-input').value; // NOUVEAU
+
     let articlesToDisplay = appData.articles;
 
     if (currentFamily !== 'ALL') {
         articlesToDisplay = articlesToDisplay.filter(article => article[ARTICLE_FAMILY_FIELD] === currentFamily);
+    }
+
+    // NOUVEAU: Filtre par fournisseur
+    if (currentSupplier !== 'ALL') {
+        articlesToDisplay = articlesToDisplay.filter(article => article[ARTICLE_SUPPLIER_FIELD] === currentSupplier);
     }
 
     if (currentQuery) {
@@ -593,7 +605,7 @@ function filterAndDisplayArticles(family = null, query = null) {
                 <td data-label="Désignation">${article[ARTICLE_DESIGNATION_FIELD]}</td>
                 <td data-label="Prix HT">${parseFloat(prixDynamique).toFixed(2)} €</td>
                 <td data-label="Stock">${stockText}</td>
-                <td data-label="Qté"><input type="number" value="1" min="1" class="article-qty-input" id="qty-${article[ARTICLE_CODE_FIELD]}"></td>
+                <td data-label="Qté"><input type="number" value="${defaultQty}" min="1" class="article-qty-input" id="qty-${article[ARTICLE_CODE_FIELD]}"></td>
                 <td data-label="Action"><button data-code="${article[ARTICLE_CODE_FIELD]}" class="add-to-cart-btn">${buttonText}</button></td>
             </tr>
         `;
@@ -706,9 +718,12 @@ function setupArticleListeners() {
 
 function setupArticleSearch() {
     const input = document.getElementById('article-search-input');
-    input.addEventListener('input', function(e) {
-        filterAndDisplayArticles(null, this.value); 
-    });
+    input.addEventListener('input', () => filterAndDisplayArticles()); 
+}
+
+function setupDefaultQtyListener() {
+    const input = document.getElementById('default-qty-input');
+    input.addEventListener('input', () => filterAndDisplayArticles());
 }
 
 function adjustStickyHeader() {
@@ -757,9 +772,11 @@ async function initApp() {
     }
 
     if (appData.articles.length > 0) {
-        setupFilters(appData.articles, ARTICLE_FAMILY_FIELD, 'famille-select', (family) => filterAndDisplayArticles(family, null));
+        setupFilters(appData.articles, ARTICLE_FAMILY_FIELD, 'famille-select', () => filterAndDisplayArticles());
+        setupFilters(appData.articles, ARTICLE_SUPPLIER_FIELD, 'fournisseur-select', () => filterAndDisplayArticles()); // NOUVEAU
         setupArticleSearch();
-        filterAndDisplayArticles(null, null); 
+        setupDefaultQtyListener(); // NOUVEAU
+        filterAndDisplayArticles(); 
     }
 
     if (appData.articles.length === 0) {
