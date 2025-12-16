@@ -36,13 +36,15 @@ const ARTICLE_DESIGNATION_FIELD = 'Designation';
 const PRICE_BASE = 'PrixHTPrincipal';
 const PRICE_COIFFEUR_DOMICILE = 'PrixCoiffeurDomicile';
 const PRICE_PUBLIC = 'PrixToutPublic';
+const PRICE_ROBIN = 'PrixRobin'; // NOUVEAU
 const STOCK_QUANTITY_FIELD = 'StockQuantity'; // Nom normalisé pour la quantité en stock
 
 // Mapping: Catégorie tarifaire client -> Colonne de prix article
 const PRICE_MAP = {
     'HT': PRICE_BASE, 
     'NPRO': PRICE_COIFFEUR_DOMICILE,
-    'TP': PRICE_PUBLIC
+    'TP': PRICE_PUBLIC,
+    'ROBIN': PRICE_ROBIN // NOUVEAU
 };
 
 
@@ -83,7 +85,8 @@ function parseCSV(csvText, separator, filename) {
             if (index === 4) return PRICE_BASE; // Décalé
 
             if (upperCleaned.includes('|NPRO')) return PRICE_COIFFEUR_DOMICILE; 
-            if (upperCleaned.includes('|TP')) return PRICE_PUBLIC; 
+            if (upperCleaned.includes('|TP')) return PRICE_PUBLIC;
+            if (upperCleaned.includes('|ROBIN')) return PRICE_ROBIN; // NOUVEAU
         }
 
         if (simpleFilename === 'StockRestant.csv') {
@@ -640,7 +643,7 @@ function updateSelectedClientInfo(client) {
              }
          });
      }
-     filterAndDisplayArticles(null, null); 
+     filterAndDisplayArticles(); 
      displayCart();
 }
 

@@ -131,6 +131,14 @@ hr {
     flex-wrap: wrap; 
 }
 
+.filter-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .filter-group label {
     display: block;
     font-weight: bold;
