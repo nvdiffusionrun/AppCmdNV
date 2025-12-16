@@ -7,12 +7,19 @@ The application is built using plain HTML, CSS, and JavaScript, with no external
 ## Key Features
 
 *   **Client Selection:** Filter clients by sector and search by name or code.
-*   **Article Catalog:** Filter articles by family and search by code or designation.
-*   **Dynamic Pricing:** Article prices are adjusted based on the selected client's tariff category.
+*   **Article Catalog:**
+    *   Filter articles by family and **supplier ("Fournisseur")**.
+    *   Search by code or designation.
+    *   Set a **default quantity** for all articles in the list.
+    *   Filter controls are **sticky** on both desktop and mobile views for easy access.
+*   **Dynamic Pricing:**
+    *   Article prices are adjusted based on the selected client's tariff category.
+    *   Correctly handles special pricing for the "ROBIN" category.
 *   **Shopping Cart:**
     *   Add, remove, and update article quantities.
+    *   **Visual feedback animation** when an item is added to the cart.
     *   Displays total items in the cart (badge in header).
-    *   Cart section is `sticky` for constant visibility.
+    *   Cart section is `sticky` for constant visibility on desktop.
     *   Visually distinguishes backordered items.
 *   **Stock Management:** The application displays the stock status of each article and allows ordering of out-of-stock items.
 *   **Delivery Date Selection:** Users can select a desired delivery date using increment/decrement buttons, with logic to skip weekends and prevent selecting past dates.
@@ -21,8 +28,10 @@ The application is built using plain HTML, CSS, and JavaScript, with no external
     *   Enhanced email body including article count, total TTC, and selected delivery date.
     *   Increased character limit for article descriptions to prevent truncation.
 *   **User Interface Enhancements:**
-    *   Adjusted width for article quantity input fields.
-    *   Dynamic adjustment for sticky table headers to prevent overlap with filter controls.
+    *   **Compact Header:** The main header has been condensed for better space usage on small screens.
+    *   **Mobile-First Layout:**
+        *   The floating cart button is positioned on the **bottom-left** to avoid overlapping with other controls.
+        *   Article filter controls are grouped horizontally to save vertical space.
     *   Client search: Pressing 'Enter' automatically selects the first suggestion.
 
 # Building and Running
@@ -37,9 +46,13 @@ python3 -m http.server
 
 Then, open your web browser and navigate to `http://localhost:8000`.
 
+You can also use a tool like **ngrok** to create a temporary public URL for your local server, which is useful for testing on mobile devices that are not on the same Wi-Fi network.
+
 **Important:**
 
 The application expects the CSV data files to be located in a directory named `BaseAppCmd`. You should ensure this directory exists in the root of the project and contains `AnnuaireClients.csv`, `BaseArticleTarifs.csv`, and `StockRestant.csv`.
+
+For the supplier filter to work, `BaseArticleTarifs.csv` must contain a "Fournisseur" column.
 
 # Development Conventions
 
