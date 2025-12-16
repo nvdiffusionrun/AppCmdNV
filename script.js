@@ -182,6 +182,25 @@ function decrementDeliveryDate() {
 // LOGIQUE DU PANIER ET DES PRIX
 // =========================================================
 
+/**
+ * Déclenche une animation CSS sur les icônes du panier.
+ */
+function animateCartIcon() {
+    const elementsToAnimate = [
+        document.getElementById('cart-status'),
+        document.getElementById('fab-cart-btn')
+    ];
+
+    elementsToAnimate.forEach(el => {
+        if (el) {
+            el.classList.add('cart-pulse-animation');
+            el.addEventListener('animationend', () => {
+                el.classList.remove('cart-pulse-animation');
+            }, { once: true });
+        }
+    });
+}
+
 function getArticlePrice(article, client) {
     if (!client || !client[CLIENT_CAT_TARIF_FIELD]) {
         const priceString = article[PRICE_BASE] ? article[PRICE_BASE].replace(',', '.').replace(/[^\d.]/g, '') : '0.00';
@@ -238,6 +257,7 @@ function addToCart(articleCode, quantity) {
     }
 
     displayCart();
+    animateCartIcon(); // Déclencher l'animation
 }
 
 function removeFromCart(articleCode) {
