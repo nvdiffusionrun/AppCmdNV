@@ -497,10 +497,18 @@ function checkoutOrder() {
 
         alert("Le client de messagerie a été ouvert. Veuillez vérifier que le récapitulatif est lisible avant d'envoyer l'e-mail. La commande va maintenant être réinitialisée.");
 
+        // Réinitialiser les filtres
+        document.getElementById('secteur-select').value = 'ALL';
+        document.getElementById('famille-select').value = 'ALL';
+        document.getElementById('fournisseur-select').value = 'ALL';
+        document.getElementById('article-search-input').value = '';
+        document.getElementById('default-qty-input').value = '1';
+
+        // Réinitialiser le client et le panier
         cart = [];
         document.getElementById('client-search-input').value = '';
         updateSelectedClientInfo(null);
-        filterAndDisplayArticles(null, null); 
+        filterAndDisplayArticles(); 
         displayCart();
     } else {
         alert("La commande n'a pas été envoyée. Vous pouvez continuer à ajouter des articles.");
