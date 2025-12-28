@@ -675,3 +675,12 @@ tr.low-stock .add-to-cart-btn:hover {
     margin: 0;
 }
 
+
+.fab-left {
+    cursor: grab;
+}
+
+body {
+    user-select: none; /* Prevent text selection during drag */
+}
+

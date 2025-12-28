@@ -300,47 +300,292 @@ function setupColorsFilter() {
 }
 
 function setupDefaultQtyControls() {
+
     const defaultQtyInput = document.getElementById('default-qty-input');
+
     const decrementBtn = document.getElementById('decrement-default-qty-btn');
+
     const incrementBtn = document.getElementById('increment-default-qty-btn');
 
+
+
     if (defaultQtyInput && decrementBtn && incrementBtn) {
+
         decrementBtn.addEventListener('click', () => {
+
             let currentValue = parseInt(defaultQtyInput.value, 10);
+
             if (!isNaN(currentValue) && currentValue > 1) { // Ensure min is 1
+
                 defaultQtyInput.value = currentValue - 1;
+
                 filterAndDisplayArticles(); // Refresh article list
+
             }
+
         });
+
+
 
         incrementBtn.addEventListener('click', () => {
+
             let currentValue = parseInt(defaultQtyInput.value, 10);
+
             if (!isNaN(currentValue)) {
+
                 defaultQtyInput.value = currentValue + 1;
+
                 filterAndDisplayArticles(); // Refresh article list
+
             }
+
         });
+
+
 
         // Also ensure that direct input change still triggers filter
+
         defaultQtyInput.addEventListener('change', () => {
+
             let currentValue = parseInt(defaultQtyInput.value, 10);
+
             if (isNaN(currentValue) || currentValue < 1) {
+
                 defaultQtyInput.value = 1; // Enforce minimum 1
+
             }
+
             filterAndDisplayArticles(); // Refresh article list
+
         });
+
     }
+
 }
 
-function adjustStickyHeader() {
-    const controls = document.getElementById('article-controls');
-    if (!controls) return;
-    const controlsHeight = controls.offsetHeight;
-    const headers = document.querySelectorAll('#articles-container th');
-    headers.forEach(th => {
-        th.style.top = `${controlsHeight}px`;
-    });
+
+
+// Function to make the FAB draggable
+
+function makeFabDraggable() {
+
+    const fabBtn = document.getElementById('fab-cart-btn');
+
+    if (!fabBtn) return;
+
+
+
+    let isDragging = false;
+
+    let offsetX, offsetY; // Store the offset from mouse click to element's top-left
+
+
+
+    // Ensure position is fixed and has a high z-index
+
+    fabBtn.style.position = 'fixed';
+
+    fabBtn.style.zIndex = '9999';
+
+
+
+    // Get initial (or default) position from computed styles
+
+    const computedStyle = getComputedStyle(fabBtn);
+
+    let currentLeft = parseInt(computedStyle.left);
+
+    let currentTop = parseInt(computedStyle.top);
+
+
+
+    // If left/top are not explicitly set (e.g., using 'bottom'/'right'), calculate them
+
+    if (computedStyle.left === 'auto' && computedStyle.right !== 'auto') {
+
+        currentLeft = window.innerWidth - parseInt(computedStyle.right) - fabBtn.offsetWidth;
+
+    }
+
+    if (computedStyle.top === 'auto' && computedStyle.bottom !== 'auto') {
+
+        currentTop = window.innerHeight - parseInt(computedStyle.bottom) - fabBtn.offsetHeight;
+
+    }
+
+
+
+    // Load saved position from localStorage if available
+
+    const savedLeft = localStorage.getItem('fabBtnLeft');
+
+    const savedTop = localStorage.getItem('fabBtnTop');
+
+
+
+    if (savedLeft !== null && savedTop !== null) {
+
+        fabBtn.style.left = savedLeft + 'px';
+
+        fabBtn.style.top = savedTop + 'px';
+
+    } else {
+
+        // Apply initial calculated position if no saved position
+
+        fabBtn.style.left = currentLeft + 'px';
+
+        fabBtn.style.top = currentTop + 'px';
+
+    }
+
+    
+
+    function dragStart(e) {
+
+        // Only allow dragging with left mouse button or touch
+
+        if (e.type === "touchstart" || e.button === 0) {
+
+            isDragging = true;
+
+            
+
+            // Get current mouse/touch position
+
+            const clientX = e.clientX || e.touches[0].clientX;
+
+            const clientY = e.clientY || e.touches[0].clientY;
+
+
+
+            // Calculate offset from the element's current position to the mouse/touch point
+
+            // This is crucial: it keeps the mouse relative to the clicked point on the button
+
+            const rect = fabBtn.getBoundingClientRect();
+
+            offsetX = clientX - rect.left; 
+
+            offsetY = clientY - rect.top; 
+
+            
+
+            fabBtn.style.cursor = 'grabbing';
+
+            window.addEventListener('mousemove', drag);
+
+            window.addEventListener('mouseup', dragEnd);
+
+            window.addEventListener('touchmove', drag);
+
+            window.addEventListener('touchend', dragEnd);
+
+        }
+
+    }
+
+
+
+    function dragEnd() {
+
+        isDragging = false;
+
+        fabBtn.style.cursor = 'grab';
+
+        window.removeEventListener('mousemove', drag);
+
+        window.removeEventListener('mouseup', dragEnd);
+
+        window.removeEventListener('touchmove', drag);
+
+        window.removeEventListener('touchend', dragEnd);
+
+        
+
+        // Save final position (pixel values)
+
+        localStorage.setItem('fabBtnLeft', parseInt(fabBtn.style.left));
+
+        localStorage.setItem('fabBtnTop', parseInt(fabBtn.style.top));
+
+    }
+
+
+
+    function drag(e) {
+
+        if (isDragging) {
+
+            e.preventDefault(); 
+
+            const clientX = e.clientX || e.touches[0].clientX;
+
+            const clientY = e.clientY || e.touches[0].clientY;
+
+
+
+            // Calculate new position of the element's top-left corner
+
+            let newLeft = clientX - offsetX;
+
+            let newTop = clientY - offsetY;
+
+
+
+            // Constrain movement within the viewport
+
+            const fabRect = fabBtn.getBoundingClientRect(); 
+
+            if (newLeft < 0) newLeft = 0;
+
+            if (newTop < 0) newTop = 0;
+
+            if (newLeft + fabRect.width > window.innerWidth) newLeft = window.innerWidth - fabRect.width;
+
+            if (newTop + fabRect.height > window.innerHeight) newTop = window.innerHeight - fabRect.height;
+
+            
+
+            fabBtn.style.left = newLeft + 'px';
+
+            fabBtn.style.top = newTop + 'px';
+
+        }
+
+    }
+
+
+
+    fabBtn.addEventListener('mousedown', dragStart);
+
+    fabBtn.addEventListener('touchstart', dragStart);
+
 }
+
+
+
+
+
+function adjustStickyHeader() {
+
+    const controls = document.getElementById('article-controls');
+
+    if (!controls) return;
+
+    const controlsHeight = controls.offsetHeight;
+
+    const headers = document.querySelectorAll('#articles-container th');
+
+    headers.forEach(th => {
+
+        th.style.top = `${controlsHeight}px`;
+
+    });
+
+}
+
+
 
 export function initListeners() {
     console.log('[initListeners] Initialisation des écouteurs...');
@@ -377,6 +622,7 @@ export function initListeners() {
     handleResize(); // Appelle-le une fois à l'initialisation
 
     setupMobileUI();
+    makeFabDraggable(); // NEW: Make FAB draggable
     
     window.addEventListener('click', function(event) {
         console.log('[window.click] Clic global détecté. Target:', event.target, 'ID:', event.target.id, 'Classes:', event.target.classList);
