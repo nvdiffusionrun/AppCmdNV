@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="debug-status" style="background-color: #ffcccb; padding: 10px; border: 1px solid red; display: none;"></div>
     <header class="main-header">
         <div id="delivery-date-controls">
             <button id="decrement-date-btn">-</button>
@@ -55,6 +56,26 @@
                             <input type="text" id="article-search-input" placeholder="Rechercher un article...">
                         </div>
                         <button id="toggle-filters-btn">Filtres</button>
+                        <div class="dropdown-filter">
+                            <button id="colors-filter-btn">Couleurs</button>
+                            <div id="colors-dropdown" class="dropdown-content">
+                                <button class="brand-btn" data-brand="MODA">MODA</button>
+                                <button class="brand-btn" data-brand="GTC">GTC</button>
+                                <button class="brand-btn" data-brand="GTD">GTD</button>
+                                <button class="brand-btn" data-brand="Solfine">Solfine</button>
+                                <button class="brand-btn" data-brand="Maiandra">Maiandra</button>
+                                <button class="brand-btn" data-brand="ILIGHT">Ilight</button>
+                                <button class="brand-btn" data-brand="ICARE">Icare</button>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label for="default-qty-input">Qté par défaut:</label>
+                            <div class="default-qty-control">
+                                <button id="decrement-default-qty-btn">-</button>
+                                <input type="number" id="default-qty-input" value="1" min="1">
+                                <button id="increment-default-qty-btn">+</button>
+                            </div>
+                        </div>
                     </div>
                     <div id="advanced-filters" class="collapsible">
                         <div class="filter-group">
@@ -65,13 +86,13 @@
                             <label for="fournisseur-select">Filtrer par Fournisseur:</label>
                             <select id="fournisseur-select"></select>
                         </div>
-                        <div class="filter-group">
-                            <label for="default-qty-input">Qté par défaut:</label>
-                            <input type="number" id="default-qty-input" value="1" min="1" style="width: 80px;">
-                        </div>
                     </div>
                 </div>
                 
+                <div id="main-nuance-grid-container" style="display: none;">
+                    <!-- Nuance grid will be dynamically loaded here -->
+                </div>
+
                 <div id="articles-container" class="data-table-container">
                     <p>Chargement des articles...</p>
                 </div>
@@ -96,7 +117,7 @@
         </div>
     </div>
     
-    <script src="script.js"></script>
+    <script type="module" src="src/main-v2.js"></script>
 
     <!-- NOUVELLE MODALE/OVERLAY POUR LE PANIER (pour mobile) -->
     <div id="cart-overlay" class="hidden">
