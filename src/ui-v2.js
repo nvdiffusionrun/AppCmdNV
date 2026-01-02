@@ -1,6 +1,7 @@
 import { 
     appState, setSelectedClient,
-    CLIENT_NAME_FIELD, CLIENT_CITY_FIELD, CLIENT_CODE_FIELD, CLIENT_CAT_TARIF_FIELD,
+    CLIENT_NAME_FIELD, CLIENT_CITY_FIELD, CLIENT_CODE_FIELD, CLIENT_CAT_TARIF_FIELD, CLIENT_SECTEUR_FIELD, // ADDED CLIENT_SECTEUR_FIELD
+    CLIENT_ADDRESS_FIELD, CLIENT_POSTAL_CODE_FIELD, CLIENT_PHONE_FIXE_FIELD, CLIENT_PHONE_GSM_FIELD, CLIENT_EMAIL_FIELD, 
     ARTICLE_CODE_FIELD, ARTICLE_FAMILY_FIELD, ARTICLE_SUPPLIER_FIELD, ARTICLE_DESIGNATION_FIELD,
     STOCK_QUANTITY_FIELD, TVA_RATE, PRICE_BASE, PRICE_MAP
 } from './state-v2.js';
@@ -242,13 +243,47 @@ export function updateSelectedClientInfo(client) {
     setSelectedClient(client);
     console.log('[updateSelectedClientInfo] appState.selectedClient après mise à jour:', appState.selectedClient);
     const clientInfoElement = document.getElementById('selected-client-info');
+    const clientInfoBtn = document.getElementById('client-info-btn'); // Get the info button
+
      if (client) {
          const clientCommune = client[CLIENT_CITY_FIELD] ? ` - ${client[CLIENT_CITY_FIELD]}` : '';
          clientInfoElement.textContent = `${client[CLIENT_NAME_FIELD]}${clientCommune} (Code: ${client[CLIENT_CODE_FIELD]}, Catégorie: ${client[CLIENT_CAT_TARIF_FIELD]})`;
+         clientInfoBtn.style.display = 'inline-block'; // Show the button when client is selected
      } else {
          clientInfoElement.textContent = "Aucun";
+         clientInfoBtn.style.display = 'none'; // Hide the button when no client is selected
      }
      
      filterAndDisplayArticles(); 
      displayCart();
+}
+
+// Function to populate and show the client details modal
+export function showClientDetailsModal(client) {
+    const modal = document.getElementById('client-details-modal');
+    if (!modal || !client) return;
+
+    // Helper to get client data or default message
+    const getClientData = (field) => client[field] || 'Non renseigné';
+
+    document.getElementById('modal-client-name').textContent = getClientData(CLIENT_NAME_FIELD);
+    document.getElementById('modal-client-code').textContent = getClientData(CLIENT_CODE_FIELD);
+    document.getElementById('modal-client-secteur').textContent = getClientData(CLIENT_SECTEUR_FIELD);
+    document.getElementById('modal-client-tarif').textContent = getClientData(CLIENT_CAT_TARIF_FIELD);
+    document.getElementById('modal-client-address-display').textContent = getClientData(CLIENT_ADDRESS_FIELD);
+    document.getElementById('modal-client-postal').textContent = getClientData(CLIENT_POSTAL_CODE_FIELD);
+    document.getElementById('modal-client-city').textContent = getClientData(CLIENT_CITY_FIELD);
+    document.getElementById('modal-client-email').textContent = getClientData(CLIENT_EMAIL_FIELD);
+    document.getElementById('modal-client-phone-fixe').textContent = getClientData(CLIENT_PHONE_FIXE_FIELD);
+    document.getElementById('modal-client-phone-gsm').textContent = getClientData(CLIENT_PHONE_GSM_FIELD);
+
+    modal.classList.remove('hidden');
+}
+
+// Function to hide the client details modal
+export function hideClientDetailsModal() {
+    const modal = document.getElementById('client-details-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
 }

@@ -17,6 +17,9 @@ export const CLIENT_SECTEUR_FIELD = 'Secteur';
 export const CLIENT_CAT_TARIF_FIELD = 'Catégorie tarifaire'; 
 export const CLIENT_ADDRESS_FIELD = 'Adresse'; 
 export const CLIENT_CITY_FIELD = 'Commune'; 
+export const CLIENT_POSTAL_CODE_FIELD = 'Code postal';
+export const CLIENT_PHONE_FIXE_FIELD = 'Tél fixe';
+export const CLIENT_PHONE_GSM_FIELD = 'Tél GSM';
 export const CLIENT_EMAIL_FIELD = 'Email'; 
 
 // Noms des colonnes articles (normalisés)

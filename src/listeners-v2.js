@@ -1,8 +1,79 @@
-import { appState, setFilteredClients, setSelectedClient } from './state-v2.js';
-import { filterAndDisplayArticles, updateSelectedClientInfo, displayCart, animateCartIcon, displayNuanceGrid } from './ui-v2.js';
+import { appState, setFilteredClients, setSelectedClient, CLIENT_ADDRESS_FIELD, CLIENT_POSTAL_CODE_FIELD, CLIENT_CITY_FIELD } from './state-v2.js';
+import { filterAndDisplayArticles, updateSelectedClientInfo, displayCart, animateCartIcon, displayNuanceGrid, showClientDetailsModal, hideClientDetailsModal } from './ui-v2.js';
 import { addToCart, updateCartQuantity, removeFromCart, checkoutOrder } from './cart-v2.js';
 import { incrementDeliveryDate, decrementDeliveryDate, calculateAndSetInitialDeliveryDate } from './date-v2.js';
 import { loadNuancesData } from './data-v2.js';
+
+function setupClientDetailsModalListeners() {
+    const clientInfoBtn = document.getElementById('client-info-btn');
+    const modal = document.getElementById('client-details-modal');
+    const closeModalBtn = modal ? modal.querySelector('.close-modal-btn') : null;
+
+    if (clientInfoBtn) {
+        clientInfoBtn.addEventListener('click', () => {
+            if (appState.selectedClient) {
+                showClientDetailsModal(appState.selectedClient);
+            }
+        });
+    }
+
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', hideClientDetailsModal);
+    }
+
+    if (modal) {
+        // Close modal if clicking outside the modal content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideClientDetailsModal();
+            }
+        });
+    }
+
+    // --- Add listeners for Copy and Maps buttons ---
+    const copyAddressBtn = document.getElementById('copy-address-btn');
+    const openInMapsBtn = document.getElementById('open-in-maps-btn');
+
+    if (copyAddressBtn) {
+        copyAddressBtn.addEventListener('click', () => {
+            console.log('[setupClientDetailsModalListeners] Copy address button clicked.');
+            if (appState.selectedClient) {
+                const client = appState.selectedClient;
+                const fullAddress = `${client[CLIENT_ADDRESS_FIELD] || ''}, ${client[CLIENT_POSTAL_CODE_FIELD] || ''} ${client[CLIENT_CITY_FIELD] || ''}`.trim().replace(/,\s*$/, '');
+                if (fullAddress) {
+                    navigator.clipboard.writeText(fullAddress).then(() => {
+                        alert('Adresse copiée dans le presse-papiers !');
+                    }).catch(err => {
+                        console.error('Erreur lors de la copie de l\'adresse:', err);
+                        alert('Impossible de copier l\'adresse.');
+                    });
+                } else {
+                    alert('Adresse complète non disponible pour la copie.');
+                }
+            } else {
+                alert('Aucun client sélectionné pour copier l\'adresse.');
+            }
+        });
+    }
+
+    if (openInMapsBtn) {
+        openInMapsBtn.addEventListener('click', () => {
+            console.log('[setupClientDetailsModalListeners] Open in Maps button clicked.');
+            if (appState.selectedClient) {
+                const client = appState.selectedClient;
+                const fullAddress = `${client[CLIENT_ADDRESS_FIELD] || ''}, ${client[CLIENT_POSTAL_CODE_FIELD] || ''} ${client[CLIENT_CITY_FIELD] || ''}`.trim().replace(/,\s*$/, '');
+                if (fullAddress) {
+                    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
+                    window.open(mapsUrl, '_blank');
+                } else {
+                    alert('Adresse complète non disponible pour l\'ouverture dans Maps.');
+                }
+            } else {
+                alert('Aucun client sélectionné pour ouvrir l\'adresse dans Maps.');
+            }
+        });
+    }
+}
 
 // Définir handleResize en tant que fonction de niveau supérieur
 const handleResize = () => {
@@ -255,311 +326,610 @@ function setupToggleFilters() {
 }
 
 function setupColorsFilter() {
+
     const colorsBtn = document.getElementById('colors-filter-btn');
+
     const colorsDropdown = document.getElementById('colors-dropdown');
 
+
+
     if (colorsBtn && colorsDropdown) {
+
         colorsBtn.addEventListener('click', (event) => {
+
             console.log('[setupColorsFilter] Clic sur le bouton "Couleurs".');
+
             colorsDropdown.classList.toggle('visible');
+
             console.log('[setupColorsFilter] Visibilité du dropdown Couleurs:', colorsDropdown.classList.contains('visible'));
+
         });
+
+
 
         colorsDropdown.addEventListener('click', async (event) => {
+
             if (event.target.classList.contains('brand-btn')) {
+
                 const brand = event.target.dataset.brand;
+
                 console.log(`[setupColorsFilter] Clic sur la marque: ${brand}`);
+
                 colorsDropdown.classList.remove('visible');
 
+
+
                 const articlesContainer = document.getElementById('articles-container');
+
                 const nuanceGridContainer = document.getElementById('main-nuance-grid-container');
 
+
+
                 articlesContainer.style.display = 'none';
+
                 nuanceGridContainer.style.display = 'block';
+
                 nuanceGridContainer.innerHTML = `<p>Chargement des nuances pour ${brand}...</p>`;
+
                 
+
                 try {
+
                     const nuancesData = await loadNuancesData(brand);
+
                     displayNuanceGrid(brand, nuancesData);
 
+
+
                     const backBtn = document.getElementById('back-to-brands-btn');
+
                     if (backBtn) {
+
                         backBtn.addEventListener('click', () => {
+
                             nuanceGridContainer.style.display = 'none';
+
                             nuanceGridContainer.innerHTML = ''; // Clean up
+
                             articlesContainer.style.display = 'block';
+
                         }, { once: true });
+
                     }
+
                 } catch (error) {
+
                     console.error(`[setupColorsFilter] Erreur lors du chargement des nuances pour ${brand}:`, error);
+
                     nuanceGridContainer.innerHTML = `<p>Impossible de charger les nuances pour ${brand}.</p>`;
+
                 }
+
             }
+
         });
+
     }
+
 }
+
+
 
 function setupDefaultQtyControls() {
 
+
+
     const defaultQtyInput = document.getElementById('default-qty-input');
 
+
+
     const decrementBtn = document.getElementById('decrement-default-qty-btn');
+
+
 
     const incrementBtn = document.getElementById('increment-default-qty-btn');
 
 
 
+
+
+
+
     if (defaultQtyInput && decrementBtn && incrementBtn) {
+
+
 
         decrementBtn.addEventListener('click', () => {
 
+
+
             let currentValue = parseInt(defaultQtyInput.value, 10);
+
+
 
             if (!isNaN(currentValue) && currentValue > 1) { // Ensure min is 1
 
+
+
                 defaultQtyInput.value = currentValue - 1;
+
+
 
                 filterAndDisplayArticles(); // Refresh article list
 
+
+
             }
 
+
+
         });
+
+
+
+
 
 
 
         incrementBtn.addEventListener('click', () => {
 
+
+
             let currentValue = parseInt(defaultQtyInput.value, 10);
+
+
 
             if (!isNaN(currentValue)) {
 
+
+
                 defaultQtyInput.value = currentValue + 1;
+
+
 
                 filterAndDisplayArticles(); // Refresh article list
 
+
+
             }
 
+
+
         });
+
+
+
+
 
 
 
         // Also ensure that direct input change still triggers filter
 
+
+
         defaultQtyInput.addEventListener('change', () => {
+
+
 
             let currentValue = parseInt(defaultQtyInput.value, 10);
 
+
+
             if (isNaN(currentValue) || currentValue < 1) {
+
+
 
                 defaultQtyInput.value = 1; // Enforce minimum 1
 
+
+
             }
+
+
 
             filterAndDisplayArticles(); // Refresh article list
 
+
+
         });
 
+
+
     }
+
+
 
 }
 
 
 
-// Function to make the FAB draggable
-
 function makeFabDraggable() {
 
+
+
     const fabBtn = document.getElementById('fab-cart-btn');
+
+
 
     if (!fabBtn) return;
 
 
 
+
+
+
+
     let isDragging = false;
+
+
 
     let offsetX, offsetY; // Store the offset from mouse click to element's top-left
 
 
 
+
+
+
+
     // Ensure position is fixed and has a high z-index
 
+
+
     fabBtn.style.position = 'fixed';
+
+
 
     fabBtn.style.zIndex = '9999';
 
 
 
+
+
+
+
     // Get initial (or default) position from computed styles
+
+
 
     const computedStyle = getComputedStyle(fabBtn);
 
+
+
     let currentLeft = parseInt(computedStyle.left);
+
+
 
     let currentTop = parseInt(computedStyle.top);
 
 
 
+
+
+
+
     // If left/top are not explicitly set (e.g., using 'bottom'/'right'), calculate them
+
+
 
     if (computedStyle.left === 'auto' && computedStyle.right !== 'auto') {
 
+
+
         currentLeft = window.innerWidth - parseInt(computedStyle.right) - fabBtn.offsetWidth;
 
+
+
     }
+
+
 
     if (computedStyle.top === 'auto' && computedStyle.bottom !== 'auto') {
 
+
+
         currentTop = window.innerHeight - parseInt(computedStyle.bottom) - fabBtn.offsetHeight;
 
+
+
     }
+
+
+
+
 
 
 
     // Load saved position from localStorage if available
 
+
+
     const savedLeft = localStorage.getItem('fabBtnLeft');
+
+
 
     const savedTop = localStorage.getItem('fabBtnTop');
 
 
 
+
+
+
+
     if (savedLeft !== null && savedTop !== null) {
+
+
 
         fabBtn.style.left = savedLeft + 'px';
 
+
+
         fabBtn.style.top = savedTop + 'px';
+
+
 
     } else {
 
+
+
         // Apply initial calculated position if no saved position
+
+
 
         fabBtn.style.left = currentLeft + 'px';
 
+
+
         fabBtn.style.top = currentTop + 'px';
+
+
 
     }
 
+
+
     
+
+
 
     function dragStart(e) {
 
+
+
         // Only allow dragging with left mouse button or touch
+
+
 
         if (e.type === "touchstart" || e.button === 0) {
 
+
+
             isDragging = true;
+
+
 
             
 
+
+
             // Get current mouse/touch position
+
+
 
             const clientX = e.clientX || e.touches[0].clientX;
 
+
+
             const clientY = e.clientY || e.touches[0].clientY;
+
+
+
+
 
 
 
             // Calculate offset from the element's current position to the mouse/touch point
 
+
+
             // This is crucial: it keeps the mouse relative to the clicked point on the button
+
+
 
             const rect = fabBtn.getBoundingClientRect();
 
+
+
             offsetX = clientX - rect.left; 
+
+
 
             offsetY = clientY - rect.top; 
 
+
+
             
+
+
 
             fabBtn.style.cursor = 'grabbing';
 
+
+
             window.addEventListener('mousemove', drag);
+
+
 
             window.addEventListener('mouseup', dragEnd);
 
+
+
             window.addEventListener('touchmove', drag);
+
+
 
             window.addEventListener('touchend', dragEnd);
 
+
+
         }
 
+
+
     }
+
+
+
+
 
 
 
     function dragEnd() {
 
+
+
         isDragging = false;
+
+
 
         fabBtn.style.cursor = 'grab';
 
+
+
         window.removeEventListener('mousemove', drag);
+
+
 
         window.removeEventListener('mouseup', dragEnd);
 
+
+
         window.removeEventListener('touchmove', drag);
+
+
 
         window.removeEventListener('touchend', dragEnd);
 
+
+
         
+
+
 
         // Save final position (pixel values)
 
+
+
         localStorage.setItem('fabBtnLeft', parseInt(fabBtn.style.left));
+
+
 
         localStorage.setItem('fabBtnTop', parseInt(fabBtn.style.top));
 
+
+
     }
+
+
+
+
 
 
 
     function drag(e) {
 
+
+
         if (isDragging) {
+
+
 
             e.preventDefault(); 
 
+
+
             const clientX = e.clientX || e.touches[0].clientX;
+
+
 
             const clientY = e.clientY || e.touches[0].clientY;
 
 
 
+
+
+
+
             // Calculate new position of the element's top-left corner
 
+
+
             let newLeft = clientX - offsetX;
+
+
 
             let newTop = clientY - offsetY;
 
 
 
+
+
+
+
             // Constrain movement within the viewport
+
+
 
             const fabRect = fabBtn.getBoundingClientRect(); 
 
+
+
             if (newLeft < 0) newLeft = 0;
+
+
 
             if (newTop < 0) newTop = 0;
 
+
+
             if (newLeft + fabRect.width > window.innerWidth) newLeft = window.innerWidth - fabRect.width;
+
+
 
             if (newTop + fabRect.height > window.innerHeight) newTop = window.innerHeight - fabRect.height;
 
+
+
             
+
+
 
             fabBtn.style.left = newLeft + 'px';
 
+
+
             fabBtn.style.top = newTop + 'px';
 
+
+
         }
+
+
 
     }
 
 
 
+
+
+
+
     fabBtn.addEventListener('mousedown', dragStart);
 
+
+
     fabBtn.addEventListener('touchstart', dragStart);
+
+
 
 }
 
@@ -569,19 +939,35 @@ function makeFabDraggable() {
 
 function adjustStickyHeader() {
 
+
+
     const controls = document.getElementById('article-controls');
+
+
 
     if (!controls) return;
 
+
+
     const controlsHeight = controls.offsetHeight;
+
+
 
     const headers = document.querySelectorAll('#articles-container th');
 
+
+
     headers.forEach(th => {
+
+
 
         th.style.top = `${controlsHeight}px`;
 
+
+
     });
+
+
 
 }
 
@@ -623,6 +1009,7 @@ export function initListeners() {
 
     setupMobileUI();
     makeFabDraggable(); // NEW: Make FAB draggable
+    setupClientDetailsModalListeners(); // NEW: Setup listeners for client details modal
     
     window.addEventListener('click', function(event) {
         console.log('[window.click] Clic global détecté. Target:', event.target, 'ID:', event.target.id, 'Classes:', event.target.classList);

@@ -41,6 +41,7 @@
 
                 <p class="selected-info">Client Sélectionné: 
                     <strong id="selected-client-info">Aucun</strong>
+                    <button id="client-info-btn" title="Voir les détails du client" style="display: none;">ℹ️</button>
                 </p>
             </section>
 
@@ -132,5 +133,34 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         <span id="fab-cart-item-count">0</span>
     </button>
+
+    <!-- Client Details Modal -->
+    <div id="client-details-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn">&times;</button>
+            <h2>Détails du Client</h2>
+            <div id="client-details-body">
+                <p><strong>Nom :</strong> <span id="modal-client-name"></span></p>
+                <p><strong>Code :</strong> <span id="modal-client-code"></span></p>
+                <p><strong>Secteur :</strong> <span id="modal-client-secteur"></span></p>
+                <p><strong>Catégorie tarifaire :</strong> <span id="modal-client-tarif"></span></p>
+                <p><strong>Adresse :</strong> 
+                    <span id="modal-client-address-display"></span>
+                    <div class="address-actions">
+                        <button id="copy-address-btn" title="Copier l'adresse">📋</button>
+                        <button id="open-in-maps-btn" title="Ouvrir dans Google Maps">🗺️</button>
+                    </div>
+                </p>
+                <p><strong>Code postal :</strong> <span id="modal-client-postal"></span></p>
+                <p><strong>Commune :</strong> <span id="modal-client-city"></span></p>
+                <p><strong>Email :</strong> <span id="modal-client-email"></span></p>
+                <p><strong>Tél Fixe :</strong> <span id="modal-client-phone-fixe"></span></p>
+                <p><strong>Tél GSM :</strong> <span id="modal-client-phone-gsm"></span></p>
+            </div>
+            <p style="font-style: italic; font-size: 0.9em; margin-top: 20px;">
+                Pour modifier ces informations, veuillez contacter l'administrateur.
+            </p>
+        </div>
+    </div>
 </body>
 </html>

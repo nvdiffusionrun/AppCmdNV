@@ -1,4 +1,4 @@
-Code Article;Libell� famille article;Fournisseur;D�signation courte article;Prix de vente Ht tarif|;Prix de vente Ttc tarif|;Prix de vente Ht tarif|BYMAL;Prix de vente Ttc tarif|BYMAL;Prix de vente Ht tarif|N;Prix de vente Ttc tarif|N;Prix de vente Ht tarif|NPRO;Prix de vente Ttc tarif|NPRO;Prix de vente Ht tarif|PHAR;Prix de vente Ttc tarif|PHAR;Prix de vente Ht tarif|ROBIN;Prix de vente Ttc tarif|ROBIN;Prix de vente Ht tarif|TP;Prix de vente Ttc tarif|TP;Prix de vente Ht tarif|TROPI;Prix de vente Ttc tarif|TROPI
+Code Article;Libelle famille article;Fournisseur;Designation courte article;Prix de vente Ht tarif|;Prix de vente Ttc tarif|;Prix de vente Ht tarif|BYMAL;Prix de vente Ttc tarif|BYMAL;Prix de vente Ht tarif|N;Prix de vente Ttc tarif|N;Prix de vente Ht tarif|NPRO;Prix de vente Ttc tarif|NPRO;Prix de vente Ht tarif|PHAR;Prix de vente Ttc tarif|PHAR;Prix de vente Ht tarif|ROBIN;Prix de vente Ttc tarif|ROBIN;Prix de vente Ht tarif|TP;Prix de vente Ttc tarif|TP;Prix de vente Ht tarif|TROPI;Prix de vente Ttc tarif|TROPI
 ACCACPEIGNROU;ACCESSOIRE;ALCAN;PEIGNOIR ALCANTARA ROUGE;25;27.125;22.5;24.4125;25;27.125;27.65;30;23.75;25.7688;21.25;23.0562;32.2581;35;23.25;25.2262
 ACCAMFICHE75P;ACCESSOIRE;;BOITE DE FICHES a CHIGNON U75P;16.75;18.1738;;;;;18.433;20;;;;;;;;
 ACCAMFICHE76B;ACCESSOIRE;;BOITE DE FICHES a CHIGNON 76BR;11.75;12.7488;;;;;13.04;14.1484;;;;;;;;
@@ -2344,3 +2344,5 @@ SOIORVAPOA150;SOIN;BYMBO01;L'OREAL CREME VAPO ACTIVE 150ML;20.1843;21.9;;;;;22.3
 SOISWANTIC150;SOIN;ADECO;SOARN lotion ANTI CHUTE Boost'R 150 ml;9.99;10.8392;;;;;11.06;12;;;;;;;;
 SOISWJOJOB250;SOIN;ADECO;LAIT DE COIFFAGE JOJOBA & RICIN 250ML;9.99;10.8392;;;;;11.06;12;;;;;;;;
 SOISWOLIVO100;SOIN;ADECO;BEURRE KARITE Olive & Chanvre 100 ml;9.99;10.8392;;;;;11.06;12;;;;;;;;
+ENCFACT;Encaissement facture;;;;;;;;;;;;;;;;;;
+RETOUR;Faire le retour de l'article;;;;;;;;;;;;;;;;;;
