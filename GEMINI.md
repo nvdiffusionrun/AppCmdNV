@@ -61,3 +61,40 @@ For the supplier filter to work, `BaseArticleTarifs.csv` must contain a "Fournis
 *   **CSS:** The CSS is well-structured and uses comments to separate different sections of the stylesheet.
 *   **Data:** The application relies on CSV files for its data. The data parsing logic is in the `script.js` file.
 *   **Dependencies:** There are no external dependencies.
+
+# Journal des modifications
+
+## Améliorations de linitialisation et du cœur de lapplication
+
+*   Résolution des problèmes critiques au démarrage de lapplication (chemins de chargement CSV incorrects, erreurs de référence).
+*   Refactorisation de la structure JavaScript, passant dun `script.js` unique à une architecture modulaire sous `src/`.
+*   Amélioration de la robustesse du parsing des fichiers CSV pour divers formats et fins de ligne.
+*   Ajout de messages derreur plus clairs pour guider lutilisateur lors des échecs de démarrage.
+
+## Sélection dynamique des nuances et intégration au panier
+
+*   Implémentation dun nouveau filtre "Couleurs" pour afficher une grille de nuances de produits.
+*   Développement dun système de mapping basé sur les données pour associer les noms des nuances à des codes articles uniques.
+*   Automatisation de la création/mise à jour des fichiers `Nuanciers/*.csv` (pour MODA, GTC, GTD, ICARE, ILIGHT, Solfine) pour intégrer les codes articles directement.
+*   Ajout direct et suppression darticles au/du panier via le clic sur un bouton de nuance.
+*   Ajout dun retour visuel (coche verte) sur les boutons de nuances sélectionnés.
+*   Correction dun bug où le changement de gamme de nuances empêchait la sélection au premier clic.
+
+## Améliorations UI/UX
+
+*   Ajout de boutons `+` et `-` pour faciliter lajustement de la quantité par défaut.
+*   Déplacement du champ de quantité par défaut à une position plus visible.
+*   Implémentation dun bouton daction flottant (FAB) déplaçable pour le panier mobile, avec persistance de la position.
+
+## Modale dinformations client
+
+*   Introduction dun bouton "Information" à côté de laffichage du client sélectionné.
+*   Implémentation dune fenêtre modale en lecture seule affichant les détails complets du client (Nom, Adresse, Téléphone, E-mail, etc.).
+*   Ajout de boutons "Copier ladresse" et "Ouvrir dans Google Maps" au sein de la modale pour une interaction rapide.
+
+## Corrections de bugs généraux
+
+*   Correction dune `ReferenceError` empêchant la génération de-mails à la validation de la commande.
+*   Assuré la réinitialisation complète des filtres et de linterface utilisateur du panier après la finalisation de la commande.
+*   Résolution de divers bugs et incohérences mineures.
+
