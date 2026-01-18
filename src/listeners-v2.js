@@ -138,18 +138,12 @@ export function setupNuanceGridListeners() {
 function setupMobileUI() {
     const cartOverlay = document.getElementById('cart-overlay');
     const closeCartBtn = document.getElementById('close-cart-btn');
-    const fabCartBtn = document.getElementById('fab-cart-btn');
-    const cartSection = document.getElementById('cart-section');
-    const cartModalContent = document.getElementById('cart-modal-content');
     const cartPanel = document.querySelector('.cart-panel');
 
-    fabCartBtn.addEventListener('click', () => {
-        cartModalContent.appendChild(cartSection);
-        cartOverlay.classList.remove('hidden');
-    });
-
     const closeOverlay = () => {
-        cartPanel.appendChild(cartSection);
+        if (cartPanel) {
+            cartPanel.appendChild(document.getElementById('cart-section'));
+        }
         cartOverlay.classList.add('hidden');
     };
 
@@ -545,392 +539,122 @@ function setupDefaultQtyControls() {
 
 function makeFabDraggable() {
 
-
-
     const fabBtn = document.getElementById('fab-cart-btn');
-
-
-
     if (!fabBtn) return;
 
-
-
-
-
-
-
     let isDragging = false;
+    let hasMoved = false;
+    let offsetX, offsetY;
+    let startX, startY;
+    let startTime;
 
+    const clickThreshold = 5; // Max pixels moved to be considered a click
+    const timeThreshold = 300; // Max ms to be considered a click
 
+    function openCartModal() {
+        const cartOverlay = document.getElementById('cart-overlay');
+        const cartSection = document.getElementById('cart-section');
+        const cartModalContent = document.getElementById('cart-modal-content');
+        if (cartOverlay && cartSection && cartModalContent) {
+            cartModalContent.appendChild(cartSection);
+            cartOverlay.classList.remove('hidden');
+        }
+    }
 
-    let offsetX, offsetY; // Store the offset from mouse click to element's top-left
-
-
-
-
-
-
-
-    // Ensure position is fixed and has a high z-index
-
-
-
+    // ... existing position loading logic ...
     fabBtn.style.position = 'fixed';
-
-
-
     fabBtn.style.zIndex = '9999';
-
-
-
-
-
-
-
-    // Get initial (or default) position from computed styles
-
-
-
     const computedStyle = getComputedStyle(fabBtn);
-
-
-
     let currentLeft = parseInt(computedStyle.left);
-
-
-
     let currentTop = parseInt(computedStyle.top);
-
-
-
-
-
-
-
-    // If left/top are not explicitly set (e.g., using 'bottom'/'right'), calculate them
-
-
-
     if (computedStyle.left === 'auto' && computedStyle.right !== 'auto') {
-
-
-
         currentLeft = window.innerWidth - parseInt(computedStyle.right) - fabBtn.offsetWidth;
-
-
-
     }
-
-
-
     if (computedStyle.top === 'auto' && computedStyle.bottom !== 'auto') {
-
-
-
         currentTop = window.innerHeight - parseInt(computedStyle.bottom) - fabBtn.offsetHeight;
-
-
-
     }
-
-
-
-
-
-
-
-    // Load saved position from localStorage if available
-
-
-
     const savedLeft = localStorage.getItem('fabBtnLeft');
-
-
-
     const savedTop = localStorage.getItem('fabBtnTop');
-
-
-
-
-
-
-
     if (savedLeft !== null && savedTop !== null) {
-
-
-
         fabBtn.style.left = savedLeft + 'px';
-
-
-
         fabBtn.style.top = savedTop + 'px';
-
-
-
     } else {
-
-
-
-        // Apply initial calculated position if no saved position
-
-
-
         fabBtn.style.left = currentLeft + 'px';
-
-
-
         fabBtn.style.top = currentTop + 'px';
-
-
-
     }
-
-
-
-    
-
-
 
     function dragStart(e) {
-
-
-
-        // Only allow dragging with left mouse button or touch
-
-
-
-        if (e.type === "touchstart" || e.button === 0) {
-
-
-
-            isDragging = true;
-
-
-
-            
-
-
-
-            // Get current mouse/touch position
-
-
-
-            const clientX = e.clientX || e.touches[0].clientX;
-
-
-
-            const clientY = e.clientY || e.touches[0].clientY;
-
-
-
-
-
-
-
-            // Calculate offset from the element's current position to the mouse/touch point
-
-
-
-            // This is crucial: it keeps the mouse relative to the clicked point on the button
-
-
-
-            const rect = fabBtn.getBoundingClientRect();
-
-
-
-            offsetX = clientX - rect.left; 
-
-
-
-            offsetY = clientY - rect.top; 
-
-
-
-            
-
-
-
-            fabBtn.style.cursor = 'grabbing';
-
-
-
-            window.addEventListener('mousemove', drag);
-
-
-
-            window.addEventListener('mouseup', dragEnd);
-
-
-
-            window.addEventListener('touchmove', drag);
-
-
-
-            window.addEventListener('touchend', dragEnd);
-
-
-
-        }
-
-
-
+        if (e.type === "mousedown" && e.button !== 0) return; // Only left mouse button
+
+        isDragging = true;
+        hasMoved = false;
+        startTime = Date.now();
+
+        const clientX = e.clientX || e.touches[0].clientX;
+        const clientY = e.clientY || e.touches[0].clientY;
+
+        startX = clientX;
+        startY = clientY;
+
+        const rect = fabBtn.getBoundingClientRect();
+        offsetX = clientX - rect.left;
+        offsetY = clientY - rect.top;
+
+        fabBtn.style.cursor = 'grabbing';
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('mouseup', dragEnd);
+        window.addEventListener('touchmove', drag, { passive: false });
+        window.addEventListener('touchend', dragEnd);
     }
 
-
-
-
-
-
-
-    function dragEnd() {
-
-
-
+    function dragEnd(e) {
         isDragging = false;
-
-
-
         fabBtn.style.cursor = 'grab';
-
-
-
         window.removeEventListener('mousemove', drag);
-
-
-
         window.removeEventListener('mouseup', dragEnd);
-
-
-
         window.removeEventListener('touchmove', drag);
-
-
-
         window.removeEventListener('touchend', dragEnd);
 
+        const timeDiff = Date.now() - startTime;
 
-
-        
-
-
-
-        // Save final position (pixel values)
-
-
-
-        localStorage.setItem('fabBtnLeft', parseInt(fabBtn.style.left));
-
-
-
-        localStorage.setItem('fabBtnTop', parseInt(fabBtn.style.top));
-
-
-
-    }
-
-
-
-
-
-
-
-    function drag(e) {
-
-
-
-        if (isDragging) {
-
-
-
-            e.preventDefault(); 
-
-
-
-            const clientX = e.clientX || e.touches[0].clientX;
-
-
-
-            const clientY = e.clientY || e.touches[0].clientY;
-
-
-
-
-
-
-
-            // Calculate new position of the element's top-left corner
-
-
-
-            let newLeft = clientX - offsetX;
-
-
-
-            let newTop = clientY - offsetY;
-
-
-
-
-
-
-
-            // Constrain movement within the viewport
-
-
-
-            const fabRect = fabBtn.getBoundingClientRect(); 
-
-
-
-            if (newLeft < 0) newLeft = 0;
-
-
-
-            if (newTop < 0) newTop = 0;
-
-
-
-            if (newLeft + fabRect.width > window.innerWidth) newLeft = window.innerWidth - fabRect.width;
-
-
-
-            if (newTop + fabRect.height > window.innerHeight) newTop = window.innerHeight - fabRect.height;
-
-
-
-            
-
-
-
-            fabBtn.style.left = newLeft + 'px';
-
-
-
-            fabBtn.style.top = newTop + 'px';
-
-
-
+        if (!hasMoved && timeDiff < timeThreshold) {
+            openCartModal();
         }
 
-
-
+        // Save final position
+        localStorage.setItem('fabBtnLeft', parseInt(fabBtn.style.left));
+        localStorage.setItem('fabBtnTop', parseInt(fabBtn.style.top));
     }
 
+    function drag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
 
+        const clientX = e.clientX || e.touches[0].clientX;
+        const clientY = e.clientY || e.touches[0].clientY;
 
+        const dx = Math.abs(clientX - startX);
+        const dy = Math.abs(clientY - startY);
 
+        if (dx > clickThreshold || dy > clickThreshold) {
+            hasMoved = true;
+        }
 
+        let newLeft = clientX - offsetX;
+        let newTop = clientY - offsetY;
 
+        const fabRect = fabBtn.getBoundingClientRect();
+        if (newLeft < 0) newLeft = 0;
+        if (newTop < 0) newTop = 0;
+        if (newLeft + fabRect.width > window.innerWidth) newLeft = window.innerWidth - fabRect.width;
+        if (newTop + fabRect.height > window.innerHeight) newTop = window.innerHeight - fabRect.height;
+
+        fabBtn.style.left = newLeft + 'px';
+        fabBtn.style.top = newTop + 'px';
+    }
 
     fabBtn.addEventListener('mousedown', dragStart);
-
-
-
-    fabBtn.addEventListener('touchstart', dragStart);
-
-
-
+    fabBtn.addEventListener('touchstart', dragStart, { passive: false });
 }
 
 
