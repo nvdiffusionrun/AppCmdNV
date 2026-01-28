@@ -56,6 +56,7 @@ export const appState = {
     deliveryDate: new Date(),
     initialDeliveryDate: new Date(),
     nuancesData: {}, // NOUVEAU: Pour stocker les données des nuanciers
+    currentNuanceBrand: null, // Track the currently active nuance brand
 };
 
 // Fonctions pour muter l'état (mutateurs)
@@ -82,4 +83,8 @@ export function setDeliveryDate(newDate) {
 
 export function setInitialDeliveryDate(newDate) {
     appState.initialDeliveryDate = newDate;
+}
+
+export function setCurrentNuanceBrand(brand) {
+    appState.currentNuanceBrand = brand;
 }

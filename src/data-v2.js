@@ -14,13 +14,19 @@ import {
 async function loadCSV(filename) {
     console.log(`[loadCSV] Tentative de chargement du fichier: ${filename}`);
     try {
-        const response = await fetch(filename);
+        // Ajout d'un paramètre "cache-busting" uniquement pour le fichier de stock
+        // pour forcer le rechargement à chaque fois et éviter les problèmes de cache sur mobile.
+        const url = (filename === STOCK_FILENAME) 
+            ? `${filename}?v=${new Date().getTime()}`
+            : filename;
+
+        const response = await fetch(url);
         if (!response.ok) {
-            console.error(`[loadCSV] Erreur de chargement pour ${filename}: Statut ${response.status}`);
-            throw new Error(`Le fichier ${filename} n'a pas pu être chargé (statut: ${response.status})`);
+            console.error(`[loadCSV] Erreur de chargement pour ${url}: Statut ${response.status}`);
+            throw new Error(`Le fichier ${url} n'a pas pu être chargé (statut: ${response.status})`);
         }
         const csvText = await response.text();
-        console.log(`[loadCSV] Fichier ${filename} chargé. Taille: ${csvText.length} caractères.`);
+        console.log(`[loadCSV] Fichier ${url} chargé. Taille: ${csvText.length} caractères.`);
         
         // Déterminer le type de parsing basé sur le répertoire
         const simpleFilename = filename.split('/').pop();

@@ -805,3 +805,22 @@ body {
     background-color: #e0e0e0;
 }
 
+/* Style for the "Retour aux Marques" button */
+#back-to-brands-btn {
+    background-color: #dc3545; /* Red color to stand out */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#back-to-brands-btn:hover {
+    background-color: #c82333;
+}
+
+

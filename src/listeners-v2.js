@@ -1,4 +1,4 @@
-import { appState, setFilteredClients, setSelectedClient, CLIENT_ADDRESS_FIELD, CLIENT_POSTAL_CODE_FIELD, CLIENT_CITY_FIELD } from './state-v2.js';
+import { appState, setFilteredClients, setSelectedClient, CLIENT_ADDRESS_FIELD, CLIENT_POSTAL_CODE_FIELD, CLIENT_CITY_FIELD, setCurrentNuanceBrand } from './state-v2.js';
 import { filterAndDisplayArticles, updateSelectedClientInfo, displayCart, animateCartIcon, displayNuanceGrid, showClientDetailsModal, hideClientDetailsModal } from './ui-v2.js';
 import { addToCart, updateCartQuantity, removeFromCart, checkoutOrder } from './cart-v2.js';
 import { incrementDeliveryDate, decrementDeliveryDate, calculateAndSetInitialDeliveryDate } from './date-v2.js';
@@ -322,7 +322,6 @@ function setupToggleFilters() {
 function setupColorsFilter() {
 
     const colorsBtn = document.getElementById('colors-filter-btn');
-
     const colorsDropdown = document.getElementById('colors-dropdown');
 
 
@@ -332,6 +331,12 @@ function setupColorsFilter() {
         colorsBtn.addEventListener('click', (event) => {
 
             console.log('[setupColorsFilter] Clic sur le bouton "Couleurs".');
+
+            // Simply toggle the visibility of the dropdown.
+
+            // The back logic is handled by the 'Retour aux Marques' button
+
+            // or re-clicking the active brand button.
 
             colorsDropdown.classList.toggle('visible');
 
@@ -347,9 +352,7 @@ function setupColorsFilter() {
 
                 const brand = event.target.dataset.brand;
 
-                console.log(`[setupColorsFilter] Clic sur la marque: ${brand}`);
-
-                colorsDropdown.classList.remove('visible');
+                console.log(`[setupColorsFilter] Clic sur la marque: ${brand}. currentNuanceBrand: ${appState.currentNuanceBrand}`);
 
 
 
@@ -359,43 +362,77 @@ function setupColorsFilter() {
 
 
 
-                articlesContainer.style.display = 'none';
+                if (appState.currentNuanceBrand === brand) {
 
-                nuanceGridContainer.style.display = 'block';
+                    // If the same brand is clicked again, hide the nuance grid and show articles
 
-                nuanceGridContainer.innerHTML = `<p>Chargement des nuances pour ${brand}...</p>`;
+                    nuanceGridContainer.style.display = 'none';
 
-                
+                    nuanceGridContainer.innerHTML = ''; // Clean up
 
-                try {
+                    articlesContainer.style.display = 'block';
 
-                    const nuancesData = await loadNuancesData(brand);
+                    colorsDropdown.classList.remove('visible'); // Hide the brand dropdown
 
-                    displayNuanceGrid(brand, nuancesData);
+                    setCurrentNuanceBrand(null); // Clear the selected brand
+
+                    console.log(`[setupColorsFilter] Re-clic sur ${brand}. Grille cachée, articles affichés.`);
+
+                } else {
+
+                    // Otherwise, load and display the new brand's nuances
+
+                    colorsDropdown.classList.remove('visible'); // Hide the brand dropdown
+
+                    articlesContainer.style.display = 'none';
+
+                    nuanceGridContainer.style.display = 'block';
+
+                    nuanceGridContainer.innerHTML = `<p>Chargement des nuances pour ${brand}...</p>`;
+
+                    setCurrentNuanceBrand(brand); // Set the newly selected brand
 
 
 
-                    const backBtn = document.getElementById('back-to-brands-btn');
+                    try {
 
-                    if (backBtn) {
+                        const nuancesData = await loadNuancesData(brand);
 
-                        backBtn.addEventListener('click', () => {
+                        displayNuanceGrid(brand, nuancesData);
 
-                            nuanceGridContainer.style.display = 'none';
 
-                            nuanceGridContainer.innerHTML = ''; // Clean up
 
-                            articlesContainer.style.display = 'block';
+                        // Re-enable the back button listener here, now that it's desired.
 
-                        }, { once: true });
+                        const backBtn = document.getElementById('back-to-brands-btn');
+
+                        if (backBtn) {
+
+                            backBtn.addEventListener('click', () => {
+
+                                nuanceGridContainer.style.display = 'none';
+
+                                nuanceGridContainer.innerHTML = ''; // Clean up
+
+                                articlesContainer.style.display = 'block';
+
+                                setCurrentNuanceBrand(null); // Clear the selected brand on back
+
+                                console.log('[setupColorsFilter] Clic sur "Retour aux Marques". Grille cachée, articles affichés.');
+
+                            }, { once: true });
+
+                        }
+
+
+
+                    } catch (error) {
+
+                        console.error(`[setupColorsFilter] Erreur lors du chargement des nuances pour ${brand}:`, error);
+
+                        nuanceGridContainer.innerHTML = `<p>Impossible de charger les nuances pour ${brand}.</p>`;
 
                     }
-
-                } catch (error) {
-
-                    console.error(`[setupColorsFilter] Erreur lors du chargement des nuances pour ${brand}:`, error);
-
-                    nuanceGridContainer.innerHTML = `<p>Impossible de charger les nuances pour ${brand}.</p>`;
 
                 }
 
