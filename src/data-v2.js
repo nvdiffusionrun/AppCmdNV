@@ -91,7 +91,8 @@ function parseCSV(csvText, separator, filename) {
     const data = [];
     for (let i = 1; i < lines.length; i++) {
         const values = lines[i].split(separator);
-        const trimmedValues = values.map(value => value.trim().replace(/\r/g, ''));
+        // Nettoyer les valeurs en enlevant les espaces et les guillemets superflus
+        const trimmedValues = values.map(value => value.trim().replace(/\r/g, '').replace(/^"|"$/g, ''));
 
         if (trimmedValues.length !== headers.length) {
             console.warn(`[parseCSV] ${filename} - Ligne ${i+1} ignorée: nombre de colonnes (${trimmedValues.length}) ne correspond pas aux en-têtes (${headers.length}). Contenu: "${lines[i]}"`);
