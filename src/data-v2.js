@@ -73,7 +73,8 @@ function parseCSV(csvText, separator, filename) {
 
         if (simpleFilename === 'StockRestant.csv') {
             if (index === 0) return ARTICLE_CODE_FIELD;
-            if (upperCleaned.includes('QUANTITEPHYSIQUE')) {
+            // Handle both 'QUANTITEPHYSIQUE' and the simpler 'STOCK' header.
+            if (upperCleaned.includes('QUANTITEPHYSIQUE') || upperCleaned === 'STOCK') {
                  return STOCK_QUANTITY_FIELD;
             }
         }
