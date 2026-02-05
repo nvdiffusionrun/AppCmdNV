@@ -193,7 +193,6 @@ export function filterAndDisplayArticles() {
     });
     html += '</tbody></table>';
     container.innerHTML = html;
-    setupArticleListeners(); // Ré-attache les écouteurs après la mise à jour du DOM
 }
 
 export function displayNuanceGrid(brand, nuancesData) {
