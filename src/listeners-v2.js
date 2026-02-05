@@ -256,6 +256,443 @@ function setupClientSearch() {
 
 
 
+function setupArticleSearch() {
+    const input = document.getElementById('article-search-input');
+    input.addEventListener('input', () => filterAndDisplayArticles()); 
+}
+
+function setupDefaultQtyListener() {
+    const input = document.getElementById('default-qty-input');
+    input.addEventListener('input', () => filterAndDisplayArticles());
+}
+
+function setupToggleFilters() {
+    const toggleBtn = document.getElementById('toggle-filters-btn');
+    const advancedFilters = document.getElementById('advanced-filters');
+
+    if (toggleBtn && advancedFilters) {
+        toggleBtn.addEventListener('click', () => {
+            const isVisible = advancedFilters.classList.toggle('visible');
+            toggleBtn.textContent = isVisible ? 'Moins de filtres' : 'Filtres';
+        });
+    }
+}
+
+function setupColorsFilter() {
+
+    const colorsBtn = document.getElementById('colors-filter-btn');
+    const colorsDropdown = document.getElementById('colors-dropdown');
+
+
+
+    if (colorsBtn && colorsDropdown) {
+
+        colorsBtn.addEventListener('click', (event) => {
+
+            console.log('[setupColorsFilter] Clic sur le bouton "Couleurs".');
+
+            // Simply toggle the visibility of the dropdown.
+
+            // The back logic is handled by the 'Retour aux Marques' button
+
+            // or re-clicking the active brand button.
+
+            colorsDropdown.classList.toggle('visible');
+
+            console.log('[setupColorsFilter] Visibilité du dropdown Couleurs:', colorsDropdown.classList.contains('visible'));
+
+        });
+
+
+
+        colorsDropdown.addEventListener('click', async (event) => {
+
+            if (event.target.classList.contains('brand-btn')) {
+
+                const brand = event.target.dataset.brand;
+
+                console.log(`[setupColorsFilter] Clic sur la marque: ${brand}. currentNuanceBrand: ${appState.currentNuanceBrand}`);
+
+
+
+                const articlesContainer = document.getElementById('articles-container');
+
+                const nuanceGridContainer = document.getElementById('main-nuance-grid-container');
+
+
+
+                if (appState.currentNuanceBrand === brand) {
+
+                    // If the same brand is clicked again, hide the nuance grid and show articles
+
+                    nuanceGridContainer.style.display = 'none';
+
+                    nuanceGridContainer.innerHTML = ''; // Clean up
+
+                    articlesContainer.style.display = 'block';
+
+                    colorsDropdown.classList.remove('visible'); // Hide the brand dropdown
+
+                    setCurrentNuanceBrand(null); // Clear the selected brand
+
+                    console.log(`[setupColorsFilter] Re-clic sur ${brand}. Grille cachée, articles affichés.`);
+
+                } else {
+
+                    // Otherwise, load and display the new brand's nuances
+
+                    colorsDropdown.classList.remove('visible'); // Hide the brand dropdown
+
+                    articlesContainer.style.display = 'none';
+
+                    nuanceGridContainer.style.display = 'block';
+
+                    nuanceGridContainer.innerHTML = `<p>Chargement des nuances pour ${brand}...</p>`;
+
+                    setCurrentNuanceBrand(brand); // Set the newly selected brand
+
+
+
+                    try {
+
+                        const nuancesData = await loadNuancesData(brand);
+
+                        displayNuanceGrid(brand, nuancesData);
+
+
+
+                        // Re-enable the back button listener here, now that it's desired.
+
+                        const backBtn = document.getElementById('back-to-brands-btn');
+
+                        if (backBtn) {
+
+                            backBtn.addEventListener('click', () => {
+
+                                nuanceGridContainer.style.display = 'none';
+
+                                nuanceGridContainer.innerHTML = ''; // Clean up
+
+                                articlesContainer.style.display = 'block';
+
+                                setCurrentNuanceBrand(null); // Clear the selected brand on back
+
+                                console.log('[setupColorsFilter] Clic sur "Retour aux Marques". Grille cachée, articles affichés.');
+
+                            }, { once: true });
+
+                        }
+
+
+
+                    } catch (error) {
+
+                        console.error(`[setupColorsFilter] Erreur lors du chargement des nuances pour ${brand}:`, error);
+
+                        nuanceGridContainer.innerHTML = `<p>Impossible de charger les nuances pour ${brand}.</p>`;
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+
+}
+
+
+
+function setupDefaultQtyControls() {
+
+
+
+    const defaultQtyInput = document.getElementById('default-qty-input');
+
+
+
+    const decrementBtn = document.getElementById('decrement-default-qty-btn');
+
+
+
+    const incrementBtn = document.getElementById('increment-default-qty-btn');
+
+
+
+
+
+
+
+    if (defaultQtyInput && decrementBtn && incrementBtn) {
+
+
+
+        decrementBtn.addEventListener('click', () => {
+
+
+
+            let currentValue = parseInt(defaultQtyInput.value, 10);
+
+
+
+            if (!isNaN(currentValue) && currentValue > 1) { // Ensure min is 1
+
+
+
+                defaultQtyInput.value = currentValue - 1;
+
+
+
+                filterAndDisplayArticles(); // Refresh article list
+
+
+
+            }
+
+
+
+        });
+
+
+
+
+
+
+
+        incrementBtn.addEventListener('click', () => {
+
+
+
+            let currentValue = parseInt(defaultQtyInput.value, 10);
+
+
+
+            if (!isNaN(currentValue)) {
+
+
+
+                defaultQtyInput.value = currentValue + 1;
+
+
+
+                filterAndDisplayArticles(); // Refresh article list
+
+
+
+            }
+
+
+
+        });
+
+
+
+
+
+
+
+        // Also ensure that direct input change still triggers filter
+
+
+
+        defaultQtyInput.addEventListener('change', () => {
+
+
+
+            let currentValue = parseInt(defaultQtyInput.value, 10);
+
+
+
+            if (isNaN(currentValue) || currentValue < 1) {
+
+
+
+                defaultQtyInput.value = 1; // Enforce minimum 1
+
+
+
+            }
+
+
+
+            filterAndDisplayArticles(); // Refresh article list
+
+
+
+        });
+
+
+
+    }
+
+
+
+}
+
+
+
+function makeFabDraggable() {
+
+    const fabBtn = document.getElementById('fab-cart-btn');
+    if (!fabBtn) return;
+
+    let isDragging = false;
+    let hasMoved = false;
+    let offsetX, offsetY;
+    let startX, startY;
+    let startTime;
+
+    const clickThreshold = 5; // Max pixels moved to be considered a click
+    const timeThreshold = 300; // Max ms to be considered a click
+
+    function openCartModal() {
+        const cartOverlay = document.getElementById('cart-overlay');
+        const cartSection = document.getElementById('cart-section');
+        const cartModalContent = document.getElementById('cart-modal-content');
+        if (cartOverlay && cartSection && cartModalContent) {
+            cartModalContent.appendChild(cartSection);
+            cartOverlay.classList.remove('hidden');
+        }
+    }
+
+    // ... existing position loading logic ...
+    fabBtn.style.position = 'fixed';
+    fabBtn.style.zIndex = '9999';
+    const computedStyle = getComputedStyle(fabBtn);
+    let currentLeft = parseInt(computedStyle.left);
+    let currentTop = parseInt(computedStyle.top);
+    if (computedStyle.left === 'auto' && computedStyle.right !== 'auto') {
+        currentLeft = window.innerWidth - parseInt(computedStyle.right) - fabBtn.offsetWidth;
+    }
+    if (computedStyle.top === 'auto' && computedStyle.bottom !== 'auto') {
+        currentTop = window.innerHeight - parseInt(computedStyle.bottom) - fabBtn.offsetHeight;
+    }
+    const savedLeft = localStorage.getItem('fabBtnLeft');
+    const savedTop = localStorage.getItem('fabBtnTop');
+    if (savedLeft !== null && savedTop !== null) {
+        fabBtn.style.left = savedLeft + 'px';
+        fabBtn.style.top = savedTop + 'px';
+    } else {
+        fabBtn.style.left = currentLeft + 'px';
+        fabBtn.style.top = currentTop + 'px';
+    }
+
+    function dragStart(e) {
+        if (e.type === "mousedown" && e.button !== 0) return; // Only left mouse button
+
+        isDragging = true;
+        hasMoved = false;
+        startTime = Date.now();
+
+        const clientX = e.clientX || e.touches[0].clientX;
+        const clientY = e.clientY || e.touches[0].clientY;
+
+        startX = clientX;
+        startY = clientY;
+
+        const rect = fabBtn.getBoundingClientRect();
+        offsetX = clientX - rect.left;
+        offsetY = clientY - rect.top;
+
+        fabBtn.style.cursor = 'grabbing';
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('mouseup', dragEnd);
+        window.addEventListener('touchmove', drag, { passive: false });
+        window.addEventListener('touchend', dragEnd);
+    }
+
+    function dragEnd(e) {
+        isDragging = false;
+        fabBtn.style.cursor = 'grab';
+        window.removeEventListener('mousemove', drag);
+        window.removeEventListener('mouseup', dragEnd);
+        window.removeEventListener('touchmove', drag);
+        window.removeEventListener('touchend', dragEnd);
+
+        const timeDiff = Date.now() - startTime;
+
+        if (!hasMoved && timeDiff < timeThreshold) {
+            openCartModal();
+        }
+
+        // Save final position
+        localStorage.setItem('fabBtnLeft', parseInt(fabBtn.style.left));
+        localStorage.setItem('fabBtnTop', parseInt(fabBtn.style.top));
+    }
+
+    function drag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const clientX = e.clientX || e.touches[0].clientX;
+        const clientY = e.clientY || e.touches[0].clientY;
+
+        const dx = Math.abs(clientX - startX);
+        const dy = Math.abs(clientY - startY);
+
+        if (dx > clickThreshold || dy > clickThreshold) {
+            hasMoved = true;
+        }
+
+        let newLeft = clientX - offsetX;
+        let newTop = clientY - offsetY;
+
+        const fabRect = fabBtn.getBoundingClientRect();
+        if (newLeft < 0) newLeft = 0;
+        if (newTop < 0) newTop = 0;
+        if (newLeft + fabRect.width > window.innerWidth) newLeft = window.innerWidth - fabRect.width;
+        if (newTop + fabRect.height > window.innerHeight) newTop = window.innerHeight - fabRect.height;
+
+        fabBtn.style.left = newLeft + 'px';
+        fabBtn.style.top = newTop + 'px';
+    }
+
+    fabBtn.addEventListener('mousedown', dragStart);
+    fabBtn.addEventListener('touchstart', dragStart, { passive: false });
+}
+
+
+
+
+
+function adjustStickyHeader() {
+
+
+
+    const controls = document.getElementById('article-controls');
+
+
+
+    if (!controls) return;
+
+
+
+    const controlsHeight = controls.offsetHeight;
+
+
+
+    const headers = document.querySelectorAll('#articles-container th');
+
+
+
+    headers.forEach(th => {
+
+
+
+        th.style.top = `${controlsHeight}px`;
+
+
+
+    });
+
+
+
+}
+
+
+
 const handleArticlesContainerClick = (e) => {
     if (e.target.classList.contains('add-to-cart-btn')) {
         const articleCode = e.target.dataset.code;
