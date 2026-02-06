@@ -16,9 +16,7 @@ async function loadCSV(filename) {
     try {
         // Ajout d'un paramètre "cache-busting" uniquement pour le fichier de stock
         // pour forcer le rechargement à chaque fois et éviter les problèmes de cache sur mobile.
-        const url = (filename === STOCK_FILENAME) 
-            ? `${filename}?v=${new Date().getTime()}`
-            : filename;
+        const url = `${filename}?v=${new Date().getTime()}`;
 
         const response = await fetch(url);
         if (!response.ok) {
