@@ -693,6 +693,8 @@ function adjustStickyHeader() {
 
 
 
+let listenersAttached = false;
+
 const handleArticlesContainerClick = (e) => {
     if (e.target.classList.contains('add-to-cart-btn')) {
         const articleCode = e.target.dataset.code;
@@ -720,6 +722,10 @@ const handleCartContainerClick = (e) => {
 };
 
 export function initListeners() {
+    if (listenersAttached) {
+        console.log('[initListeners] Écouteurs déjà initialisés. Annulation.');
+        return;
+    }
     console.log('[initListeners] Initialisation des écouteurs...');
     if (appState.appData.clients.length > 0) {
         setupFilters(appState.appData.clients, 'Secteur', 'secteur-select', (e) => filterClientsBySector(e.target.value));
@@ -741,13 +747,11 @@ export function initListeners() {
     // Centralized event listeners for containers
     const articlesContainer = document.getElementById('articles-container');
     if (articlesContainer) {
-        articlesContainer.removeEventListener('click', handleArticlesContainerClick);
         articlesContainer.addEventListener('click', handleArticlesContainerClick);
     }
 
     const cartContainer = document.getElementById('cart-container');
     if (cartContainer) {
-        cartContainer.removeEventListener('click', handleCartContainerClick);
         cartContainer.addEventListener('click', handleCartContainerClick);
     }
 
@@ -766,4 +770,7 @@ export function initListeners() {
     window.addEventListener('click', function(event) {
         // ... (rest of the function is the same, not repeating for brevity)
     });
+    
+    listenersAttached = true;
+    console.log('[initListeners] Écouteurs attachés.');
 }
