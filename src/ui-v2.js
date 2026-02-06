@@ -6,7 +6,7 @@ import {
     STOCK_QUANTITY_FIELD, TVA_RATE, PRICE_BASE, PRICE_MAP
 } from './state-v2.js';
 import { getArticlePrice } from './utils-v2.js';
-import { setupArticleListeners, setupNuanceGridListeners } from './listeners-v2.js';
+import { setupNuanceGridListeners } from './listeners-v2.js';
 
 export function displayDeliveryDate() {
     const displayEl = document.getElementById('delivery-date-display');
