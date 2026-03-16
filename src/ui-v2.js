@@ -1,5 +1,5 @@
 import { 
-    appState, setSelectedClient,
+    appState, setSelectedClient, setCart,
     CLIENT_NAME_FIELD, CLIENT_CITY_FIELD, CLIENT_CODE_FIELD, CLIENT_CAT_TARIF_FIELD, CLIENT_SECTEUR_FIELD, // ADDED CLIENT_SECTEUR_FIELD
     CLIENT_ADDRESS_FIELD, CLIENT_POSTAL_CODE_FIELD, CLIENT_PHONE_FIXE_FIELD, CLIENT_PHONE_GSM_FIELD, CLIENT_EMAIL_FIELD, 
     ARTICLE_CODE_FIELD, ARTICLE_FAMILY_FIELD, ARTICLE_SUPPLIER_FIELD, ARTICLE_DESIGNATION_FIELD,
@@ -236,6 +236,47 @@ export function displayNuanceGrid(brand, nuancesData) {
     mainNuanceContainer.innerHTML = html;
 }
 
+
+export function resetApp() {
+    // Reset filters and state
+    const secteurSelect = document.getElementById('secteur-select');
+    const familleSelect = document.getElementById('famille-select');
+    const fournisseurSelect = document.getElementById('fournisseur-select');
+    const articleSearchInput = document.getElementById('article-search-input');
+    const defaultQtyInput = document.getElementById('default-qty-input');
+    const clientSearchInput = document.getElementById('client-search-input');
+    
+    if (secteurSelect) secteurSelect.value = 'ALL';
+    if (familleSelect) familleSelect.value = 'ALL';
+    if (fournisseurSelect) fournisseurSelect.value = 'ALL';
+    if (articleSearchInput) articleSearchInput.value = '';
+    if (defaultQtyInput) defaultQtyInput.value = '1';
+    if (clientSearchInput) clientSearchInput.value = '';
+    
+    // Clear cart and reset client
+    updateSelectedClientInfo(null);
+    setCart([]);
+    
+    // Hide mobile cart overlay if it exists
+    const cartOverlay = document.getElementById('cart-overlay');
+    if (cartOverlay) {
+        cartOverlay.classList.add('hidden');
+    }
+
+    // Reset nuance grid if visible
+    const mainNuanceContainer = document.getElementById('main-nuance-grid-container');
+    if (mainNuanceContainer) {
+        mainNuanceContainer.innerHTML = '';
+        mainNuanceContainer.style.display = 'none';
+    }
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Manually trigger UI updates
+    filterAndDisplayArticles();
+    displayCart();
+}
 
 export function updateSelectedClientInfo(client) {
     console.log('[updateSelectedClientInfo] Client reçu:', client);

@@ -6,7 +6,7 @@ import {
     TVA_RATE, PRICE_BASE, PRICE_MAP 
 } from './state-v2.js';
 import { getArticlePrice } from './utils-v2.js';
-import { updateSelectedClientInfo } from './ui-v2.js';
+import { updateSelectedClientInfo, resetApp } from './ui-v2.js';
 
 export function removeFromCart(articleCode) {
     const newCart = appState.cart.filter(item => item.code !== articleCode);
@@ -163,26 +163,7 @@ export function checkoutOrder() {
 
         alert("Le client de messagerie a été ouvert. Veuillez vérifier que le récapitulatif est lisible avant d'envoyer l'e-mail. La commande va maintenant être réinitialisée.");
 
-        // Reset filters and state
-        document.getElementById('secteur-select').value = 'ALL';
-        document.getElementById('famille-select').value = 'ALL';
-        document.getElementById('fournisseur-select').value = 'ALL';
-        document.getElementById('article-search-input').value = '';
-        document.getElementById('default-qty-input').value = '1';
-        document.getElementById('client-search-input').value = '';
-        
-        setCart([]);
-        updateSelectedClientInfo(null); // This updates both state and UI
-        
-        // Hide mobile cart overlay if it exists
-        const cartOverlay = document.getElementById('cart-overlay');
-        if (cartOverlay) {
-            cartOverlay.classList.add('hidden');
-        }
-
-        // Manually trigger UI updates
-        filterAndDisplayArticles();
-        displayCart();
+        resetApp();
     } else {
         alert("La commande n'a pas été envoyée. Vous pouvez continuer à ajouter des articles.");
     }
