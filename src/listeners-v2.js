@@ -721,6 +721,25 @@ const handleCartContainerClick = (e) => {
     }
 };
 
+function setupQuickLinks() {
+    const quickLinkBtns = document.querySelectorAll('.quick-link-btn');
+    const articleSearchInput = document.getElementById('article-search-input');
+
+    quickLinkBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const searchTerm = btn.dataset.search;
+            if (articleSearchInput) {
+                articleSearchInput.value = searchTerm;
+                // Important: Trigger the input event to fire the search logic
+                articleSearchInput.dispatchEvent(new Event('input'));
+                
+                // Optional: Scroll to results if needed, though they are usually right below
+                console.log(`[setupQuickLinks] Applied quick search for: ${searchTerm}`);
+            }
+        });
+    });
+}
+
 export function initListeners() {
     if (listenersAttached) {
         console.log('[initListeners] Écouteurs déjà initialisés. Annulation.');
@@ -742,6 +761,7 @@ export function initListeners() {
         setupColorsFilter();
         setupNuanceGridListeners(); // Attach nuance grid listener once
         setupDefaultQtyControls(); // NEW: Setup controls for default quantity
+        setupQuickLinks(); // NEW: HMJ and MHN buttons
     }
     
     // Centralized event listeners for containers
