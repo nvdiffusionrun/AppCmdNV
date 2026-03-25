@@ -6,6 +6,7 @@ export const CLIENT_FILENAME = "BaseAppCmd/AnnuaireClients.csv";
 export const ARTICLE_FILENAME = "BaseAppCmd/BaseArticleTarifs.csv";
 export const STOCK_FILENAME = "BaseAppCmd/StockRestant.csv";
 export const NUANCE_DIR = 'Nuanciers/'; // NOUVEAU
+export const KERAGOLD_FILENAME = NUANCE_DIR + "Keragold.csv"; // NOUVEAU
 
 export const SEPARATOR = ";";    
 export const TVA_RATE = 0.085; // 8.5% de TVA à la Réunion (taux réduit)
@@ -56,6 +57,7 @@ export const appState = {
     deliveryDate: new Date(),
     initialDeliveryDate: new Date(),
     nuancesData: {}, // NOUVEAU: Pour stocker les données des nuanciers
+    keragoldData: null, // NOUVEAU: Pour stocker les données Keragold
     currentNuanceBrand: null, // Track the currently active nuance brand
 };
 

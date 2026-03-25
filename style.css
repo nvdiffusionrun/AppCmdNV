@@ -156,6 +156,16 @@ hr {
     color: white;
 }
 
+#keragold-filter-btn {
+    padding: 8px 12px;
+    background-color: #ffc107; /* Yellow */
+    color: #333;
+}
+
+#keragold-filter-btn:hover {
+    background-color: #e0a800;
+}
+
 #colors-dropdown {
     display: none;
     position: absolute;
@@ -612,7 +622,19 @@ tr.low-stock .add-to-cart-btn:hover {
 
 .pulse-feedback {
   animation: pulse 0.5s;
-}.nuance-btn.disabled { background-color: #e9ecef; color: #6c757d; cursor: not-allowed; opacity: 0.7; }
+}.nuance-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Increased gap */
+    margin-bottom: 20px;
+}
+
+.nuance-btn {
+    margin: 5px;
+    padding: 10px 15px; /* Ensure decent padding */
+}
+
+.nuance-btn.disabled { background-color: #e9ecef; color: #6c757d; cursor: not-allowed; opacity: 0.7; }
 
 .nuance-btn.selected-nuance {
     background-color: #d4edda;
@@ -820,6 +842,23 @@ body {
 }
 
 #back-to-brands-btn:hover {
+    background-color: #c82333;
+}
+
+#back-to-articles-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#back-to-articles-btn:hover {
     background-color: #c82333;
 }
 

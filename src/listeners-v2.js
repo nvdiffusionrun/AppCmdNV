@@ -1,8 +1,8 @@
 import { appState, setFilteredClients, setSelectedClient, CLIENT_ADDRESS_FIELD, CLIENT_POSTAL_CODE_FIELD, CLIENT_CITY_FIELD, setCurrentNuanceBrand } from './state-v2.js';
-import { filterAndDisplayArticles, updateSelectedClientInfo, displayCart, animateCartIcon, displayNuanceGrid, showClientDetailsModal, hideClientDetailsModal } from './ui-v2.js';
+import { filterAndDisplayArticles, updateSelectedClientInfo, displayCart, animateCartIcon, displayNuanceGrid, displayKeragoldGrid, showClientDetailsModal, hideClientDetailsModal } from './ui-v2.js';
 import { addToCart, updateCartQuantity, removeFromCart, checkoutOrder } from './cart-v2.js';
 import { incrementDeliveryDate, decrementDeliveryDate, calculateAndSetInitialDeliveryDate } from './date-v2.js';
-import { loadNuancesData } from './data-v2.js';
+import { loadNuancesData, loadKeragoldData } from './data-v2.js';
 
 function setupClientDetailsModalListeners() {
     const clientInfoBtn = document.getElementById('client-info-btn');
@@ -283,24 +283,26 @@ function setupColorsFilter() {
     const colorsBtn = document.getElementById('colors-filter-btn');
     const colorsDropdown = document.getElementById('colors-dropdown');
 
-
-
     if (colorsBtn && colorsDropdown) {
 
         colorsBtn.addEventListener('click', (event) => {
-
             console.log('[setupColorsFilter] Clic sur le bouton "Couleurs".');
+            
+            const nuanceGridContainer = document.getElementById('main-nuance-grid-container');
+            const articlesContainer = document.getElementById('articles-container');
 
-            // Simply toggle the visibility of the dropdown.
-
-            // The back logic is handled by the 'Retour aux Marques' button
-
-            // or re-clicking the active brand button.
-
-            colorsDropdown.classList.toggle('visible');
-
-            console.log('[setupColorsFilter] Visibilité du dropdown Couleurs:', colorsDropdown.classList.contains('visible'));
-
+            // Si une grille de nuances est déjà visible (n'importe laquelle),
+            // cliquer sur le bouton principal "Couleurs" la ferme et revient aux articles.
+            if (nuanceGridContainer.style.display === 'block') {
+                nuanceGridContainer.style.display = 'none';
+                nuanceGridContainer.innerHTML = '';
+                articlesContainer.style.display = 'block';
+                colorsDropdown.classList.remove('visible');
+                setCurrentNuanceBrand(null);
+                console.log('[setupColorsFilter] Grille fermée via bouton principal.');
+            } else {
+                colorsDropdown.classList.toggle('visible');
+            }
         });
 
 
@@ -401,6 +403,45 @@ function setupColorsFilter() {
 
     }
 
+}
+
+function setupKeragoldFilter() {
+    const keragoldBtn = document.getElementById('keragold-filter-btn');
+    if (!keragoldBtn) return;
+
+    keragoldBtn.addEventListener('click', async () => {
+        console.log('[setupKeragoldFilter] Clic sur le bouton "Keragold".');
+        
+        const articlesContainer = document.getElementById('articles-container');
+        const nuanceGridContainer = document.getElementById('main-nuance-grid-container');
+        const colorsDropdown = document.getElementById('colors-dropdown');
+        
+        if (colorsDropdown) colorsDropdown.classList.remove('visible');
+        
+        // Si la grille est déjà visible, on la ferme (comportement Toggle)
+        if (nuanceGridContainer.style.display === 'block') {
+            nuanceGridContainer.style.display = 'none';
+            nuanceGridContainer.innerHTML = '';
+            articlesContainer.style.display = 'block';
+            setCurrentNuanceBrand(null);
+            console.log('[setupKeragoldFilter] Toggle: Fermeture de la grille.');
+            return;
+        }
+
+        // Sinon on l'affiche
+        articlesContainer.style.display = 'none';
+        nuanceGridContainer.style.display = 'block';
+        nuanceGridContainer.innerHTML = `<p>Chargement des produits Keragold...</p>`;
+        
+        try {
+            const data = await loadKeragoldData();
+            displayKeragoldGrid(data);
+            setCurrentNuanceBrand(null); // Clear current nuance brand
+        } catch (error) {
+            console.error(`[setupKeragoldFilter] Erreur:`, error);
+            nuanceGridContainer.innerHTML = `<p>Impossible de charger les produits Keragold.</p>`;
+        }
+    });
 }
 
 
@@ -759,6 +800,7 @@ export function initListeners() {
         setupDefaultQtyListener();
         setupToggleFilters();
         setupColorsFilter();
+        setupKeragoldFilter(); // NOUVEAU
         setupNuanceGridListeners(); // Attach nuance grid listener once
         setupDefaultQtyControls(); // NEW: Setup controls for default quantity
         setupQuickLinks(); // NEW: HMJ and MHN buttons

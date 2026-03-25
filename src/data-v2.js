@@ -1,6 +1,6 @@
 import { 
     appState,
-    CLIENT_FILENAME, ARTICLE_FILENAME, STOCK_FILENAME, NUANCE_DIR, SEPARATOR,
+    CLIENT_FILENAME, ARTICLE_FILENAME, STOCK_FILENAME, NUANCE_DIR, KERAGOLD_FILENAME, SEPARATOR,
     ARTICLE_CODE_FIELD, ARTICLE_FAMILY_FIELD, ARTICLE_SUPPLIER_FIELD, 
     ARTICLE_DESIGNATION_FIELD, PRICE_BASE, PRICE_COIFFEUR_DOMICILE, 
     PRICE_PUBLIC, PRICE_ROBIN, STOCK_QUANTITY_FIELD, CLIENT_SECTEUR_FIELD, 
@@ -11,7 +11,7 @@ import {
 // FONCTIONS DE LECTURE ET PARSING CSV
 // =========================================================
 
-async function loadCSV(filename) {
+async function loadCSV(filename, separator = SEPARATOR) {
     console.log(`[loadCSV] Tentative de chargement du fichier: ${filename}`);
     try {
         // Ajout d'un paramètre "cache-busting" uniquement pour le fichier de stock
@@ -28,12 +28,12 @@ async function loadCSV(filename) {
         
         // Déterminer le type de parsing basé sur le répertoire
         const simpleFilename = filename.split('/').pop();
-        if (filename.startsWith(NUANCE_DIR)) {
+        if (filename.startsWith(NUANCE_DIR) && simpleFilename !== 'Keragold.csv') {
             const parsedData = parseNuanceCSV(csvText, filename);
             console.log(`[loadCSV] Fichier ${filename} parsé (nuance).`);
             return parsedData;
         } else {
-            const parsedData = parseCSV(csvText, SEPARATOR, filename);
+            const parsedData = parseCSV(csvText, separator, filename);
             console.log(`[loadCSV] Fichier ${filename} parsé (standard). Nombre de lignes: ${parsedData.length}`);
             return parsedData;
         }
@@ -45,16 +45,65 @@ async function loadCSV(filename) {
 
 function parseCSV(csvText, separator, filename) {
     console.log(`[parseCSV] Début du parsing de ${filename}.`);
-    const lines = csvText.trim().split('\n');
-    if (lines.length === 0) {
+    
+    // Remove BOM if present
+    csvText = csvText.replace(/^\uFEFF/, '');
+    
+    const result = [];
+    let currentLine = [];
+    let currentValue = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < csvText.length; i++) {
+        const char = csvText[i];
+        const nextChar = csvText[i + 1];
+
+        if (char === '"') {
+            if (inQuotes && nextChar === '"') {
+                // Double quote inside quoted field
+                currentValue += '"';
+                i++;
+            } else {
+                // Toggle quote state
+                inQuotes = !inQuotes;
+            }
+        } else if (char === separator && !inQuotes) {
+            // End of field
+            currentLine.push(currentValue.trim());
+            currentValue = '';
+        } else if ((char === '\r' || char === '\n') && !inQuotes) {
+            // End of line
+            if (currentValue || currentLine.length > 0) {
+                currentLine.push(currentValue.trim());
+                result.push(currentLine);
+            }
+            currentLine = [];
+            currentValue = '';
+            // Handle \r\n
+            if (char === '\r' && nextChar === '\n') {
+                i++;
+            }
+        } else {
+            currentValue += char;
+        }
+    }
+    
+    // Push last line if exists
+    if (currentValue || currentLine.length > 0) {
+        currentLine.push(currentValue.trim());
+        result.push(currentLine);
+    }
+
+    if (result.length === 0) {
         console.warn(`[parseCSV] Le fichier ${filename} est vide.`);
         return [];
     }
 
+    const rawHeaders = result[0];
+    
     const cleanHeader = (header, index) => {
-        let cleaned = header.trim().replace(/\r/g, ''); 
+        let cleaned = header.trim();
         const upperCleaned = cleaned.toUpperCase();
-        
         const simpleFilename = filename.split('/').pop();
 
         if (simpleFilename === 'BaseArticleTarifs.csv') {
@@ -63,7 +112,6 @@ function parseCSV(csvText, separator, filename) {
             if (index === 2) return ARTICLE_SUPPLIER_FIELD;
             if (index === 3) return ARTICLE_DESIGNATION_FIELD;
             if (index === 4) return PRICE_BASE;
-
             if (upperCleaned.includes('|NPRO')) return PRICE_COIFFEUR_DOMICILE; 
             if (upperCleaned.includes('|TP')) return PRICE_PUBLIC;
             if (upperCleaned.includes('|ROBIN')) return PRICE_ROBIN;
@@ -71,7 +119,6 @@ function parseCSV(csvText, separator, filename) {
 
         if (simpleFilename === 'StockRestant.csv') {
             if (index === 0) return ARTICLE_CODE_FIELD;
-            // Handle both 'QUANTITEPHYSIQUE' and the simpler 'STOCK' header.
             if (upperCleaned.includes('QUANTITEPHYSIQUE') || upperCleaned === 'STOCK') {
                  return STOCK_QUANTITY_FIELD;
             }
@@ -83,28 +130,26 @@ function parseCSV(csvText, separator, filename) {
         return cleaned; 
     };
 
-    const rawHeaders = lines[0].split(separator);
-    const headers = rawHeaders.map(cleanHeader); 
+    const headers = rawHeaders.map(cleanHeader);
     console.log(`[parseCSV] ${filename} - En-têtes nettoyés:`, headers);
 
     const data = [];
-    for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(separator);
-        // Nettoyer les valeurs en enlevant les espaces et les guillemets superflus
-        const trimmedValues = values.map(value => value.trim().replace(/\r/g, '').replace(/^"|"$/g, ''));
-
-        if (trimmedValues.length !== headers.length) {
-            console.warn(`[parseCSV] ${filename} - Ligne ${i+1} ignorée: nombre de colonnes (${trimmedValues.length}) ne correspond pas aux en-têtes (${headers.length}). Contenu: "${lines[i]}"`);
-            continue; 
+    for (let i = 1; i < result.length; i++) {
+        const row = result[i];
+        if (row.length !== headers.length) {
+            // Filter out empty rows or mismatched columns
+            if (row.length === 1 && row[0] === '') continue;
+            console.warn(`[parseCSV] ${filename} - Ligne ${i+1} ignorée: colonnes=${row.length} vs headers=${headers.length}`);
+            continue;
         }
-
         const item = {};
         for (let j = 0; j < headers.length; j++) {
-            item[headers[j]] = trimmedValues[j];
+            item[headers[j]] = row[j];
         }
         data.push(item);
     }
-    console.log(`[parseCSV] Fin du parsing de ${filename}. ${data.length} lignes de données extraites.`);
+    
+    console.log(`[parseCSV] Fin du parsing de ${filename}. ${data.length} lignes extraites.`);
     return data;
 }
 
@@ -209,6 +254,57 @@ export async function loadNuancesData(brandName) {
         return nuances;
     } catch (error) {
         console.error(`[loadNuancesData] Erreur lors du chargement du nuancier pour ${brandName}:`, error);
+        return null;
+    }
+}
+
+export async function loadKeragoldData() {
+    console.log(`[loadKeragoldData] Chargement des données Keragold depuis: ${KERAGOLD_FILENAME}`);
+    try {
+        const data = await loadCSV(KERAGOLD_FILENAME, ',');
+        
+        // Group by "Gamme"
+        const groupedData = data.reduce((groups, item) => {
+            const gamme = item['Gamme'] || 'Autre';
+            const code = item['Référence (SKU)'];
+            
+            // Si l'article n'existe pas dans la base principale, on l'ajoute
+            // pour permettre l'ajout au panier.
+            const existingArticle = appState.appData.articles.find(a => a[ARTICLE_CODE_FIELD] === code);
+            if (!existingArticle && code) {
+                const newArticle = {
+                    [ARTICLE_CODE_FIELD]: code,
+                    [ARTICLE_DESIGNATION_FIELD]: `${item['Produit']} ${item['Contenance']}`,
+                    [ARTICLE_FAMILY_FIELD]: 'KERAGOLD',
+                    [ARTICLE_SUPPLIER_FIELD]: 'KERAGOLD',
+                    [PRICE_BASE]: item['Prix TTC'].replace('€', '').replace(',', '.').trim(), // On utilise le TTC du CSV comme base HT pour simplifier si absent
+                    [STOCK_QUANTITY_FIELD]: '0' // Par défaut en rupture si pas dans StockRestant.csv
+                };
+                appState.appData.articles.push(newArticle);
+            }
+
+            if (!groups[gamme]) {
+                groups[gamme] = {
+                    name: gamme,
+                    type: item['Type/Nom de Gamme'] || '',
+                    benefits: item['Bénéfices'] || '',
+                    products: []
+                };
+            }
+            groups[gamme].products.push({
+                name: item['Produit'],
+                contenance: item['Contenance'],
+                code: item['Référence (SKU)'],
+                priceTTC: item['Prix TTC']
+            });
+            return groups;
+        }, {});
+        
+        appState.keragoldData = Object.values(groupedData);
+        console.log(`[loadKeragoldData] Données Keragold chargées et groupées.`, appState.keragoldData);
+        return appState.keragoldData;
+    } catch (error) {
+        console.error(`[loadKeragoldData] Erreur lors du chargement des données Keragold:`, error);
         return null;
     }
 }

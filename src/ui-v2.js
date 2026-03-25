@@ -236,6 +236,53 @@ export function displayNuanceGrid(brand, nuancesData) {
     mainNuanceContainer.innerHTML = html;
 }
 
+export function displayKeragoldGrid(keragoldData) {
+    const mainNuanceContainer = document.getElementById('main-nuance-grid-container');
+    if (!mainNuanceContainer) return;
+
+    mainNuanceContainer.innerHTML = '';
+    mainNuanceContainer.style.display = 'block';
+
+    let html = `<h3>Gamme Keragold Pro</h3>`;
+    html += `<button id="back-to-articles-btn">Retour aux Articles</button>`;
+
+    if (!keragoldData || keragoldData.length === 0) {
+        html += `<p>Aucune donnée Keragold trouvée.</p>`;
+        mainNuanceContainer.innerHTML = html;
+        return;
+    }
+
+    keragoldData.forEach(gamme => {
+        html += `<div class="keragold-gamme-section" style="margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">`;
+        html += `<h4 style="margin-bottom: 5px;">${gamme.name} - ${gamme.type}</h4>`;
+        if (gamme.benefits) {
+            html += `<p class="gamme-benefits" style="font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 10px;">${gamme.benefits}</p>`;
+        }
+        html += `<div class="nuance-row">`;
+        gamme.products.forEach(product => {
+            const isInCart = appState.cart.some(item => item.code === product.code);
+            const selectedClass = isInCart ? ' selected-nuance' : '';
+            html += `<button class="nuance-btn${selectedClass}" data-code="${product.code}" title="${product.name} ${product.contenance}" style="height: auto; padding: 8px;">
+                        ${product.name}<br><small>${product.contenance}</small><br><span style="font-weight: bold;">${product.priceTTC}</span>
+                     </button>`;
+        });
+        html += `</div></div>`;
+    });
+
+    mainNuanceContainer.innerHTML = html;
+    
+    // Add listener for back button
+    const backBtn = document.getElementById('back-to-articles-btn');
+    if (backBtn) {
+        backBtn.addEventListener('click', () => {
+            mainNuanceContainer.style.display = 'none';
+            mainNuanceContainer.innerHTML = '';
+            document.getElementById('articles-container').style.display = 'block';
+            console.log('[displayKeragoldGrid] Retour aux articles.');
+        });
+    }
+}
+
 
 export function resetApp() {
     // Reset filters and state
