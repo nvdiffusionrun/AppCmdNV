@@ -231,6 +231,22 @@ input.article-qty-input {
     width: 60px;
 }
 
+/* --- Commentaire de commande --- */
+#order-comment-group {
+    margin: 15px 0;
+}
+
+#order-comment-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: inherit;
+    resize: vertical;
+}
+
 /* --- Section Client --- */
 .client-search {
     position: relative;

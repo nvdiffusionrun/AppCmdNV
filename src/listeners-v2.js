@@ -1,4 +1,4 @@
-import { appState, setFilteredClients, setSelectedClient, CLIENT_ADDRESS_FIELD, CLIENT_POSTAL_CODE_FIELD, CLIENT_CITY_FIELD, setCurrentNuanceBrand } from './state-v2.js';
+import { appState, setFilteredClients, setSelectedClient, setOrderComment, CLIENT_ADDRESS_FIELD, CLIENT_POSTAL_CODE_FIELD, CLIENT_CITY_FIELD, setCurrentNuanceBrand } from './state-v2.js';
 import { filterAndDisplayArticles, updateSelectedClientInfo, displayCart, animateCartIcon, displayNuanceGrid, displayKeragoldGrid, showClientDetailsModal, hideClientDetailsModal } from './ui-v2.js';
 import { addToCart, updateCartQuantity, removeFromCart, checkoutOrder } from './cart-v2.js';
 import { incrementDeliveryDate, decrementDeliveryDate, calculateAndSetInitialDeliveryDate } from './date-v2.js';
@@ -820,6 +820,11 @@ export function initListeners() {
     document.getElementById('increment-date-btn').addEventListener('click', incrementDeliveryDate);
     document.getElementById('decrement-date-btn').addEventListener('click', decrementDeliveryDate);
     document.getElementById('checkout-btn').addEventListener('click', checkoutOrder);
+
+    const orderCommentInput = document.getElementById('order-comment-input');
+    if (orderCommentInput) {
+        orderCommentInput.addEventListener('input', (e) => setOrderComment(e.target.value));
+    }
     
     adjustStickyHeader();
     window.addEventListener('resize', handleResize); // Attache l'écouteur de redimensionnement ici

@@ -1,5 +1,5 @@
-import { 
-    appState, setSelectedClient, setCart,
+import {
+    appState, setSelectedClient, setCart, setOrderComment,
     CLIENT_NAME_FIELD, CLIENT_CITY_FIELD, CLIENT_CODE_FIELD, CLIENT_CAT_TARIF_FIELD, CLIENT_SECTEUR_FIELD, // ADDED CLIENT_SECTEUR_FIELD
     CLIENT_ADDRESS_FIELD, CLIENT_POSTAL_CODE_FIELD, CLIENT_PHONE_FIXE_FIELD, CLIENT_PHONE_GSM_FIELD, CLIENT_EMAIL_FIELD, 
     ARTICLE_CODE_FIELD, ARTICLE_FAMILY_FIELD, ARTICLE_SUPPLIER_FIELD, ARTICLE_DESIGNATION_FIELD,
@@ -299,7 +299,11 @@ export function resetApp() {
     if (articleSearchInput) articleSearchInput.value = '';
     if (defaultQtyInput) defaultQtyInput.value = '1';
     if (clientSearchInput) clientSearchInput.value = '';
-    
+
+    const orderCommentInput = document.getElementById('order-comment-input');
+    if (orderCommentInput) orderCommentInput.value = '';
+    setOrderComment('');
+
     // Clear cart and reset client
     updateSelectedClientInfo(null);
     setCart([]);

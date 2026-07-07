@@ -85,7 +85,7 @@ export function updateCartQuantity(articleCode, action) {
     }
 }
 
-function generateMailBody(client, cart, totalHT, tvaAmount, totalTTC, formattedDateTime, deliveryDate) {
+function generateMailBody(client, cart, totalHT, tvaAmount, totalTTC, formattedDateTime, deliveryDate, orderComment) {
     const HEADER_LINE = "=========================================================================\n";
     const ARTICLE_SEPARATOR = "-------------------------------------------------------------------------\n";
     const DESIGNATION_LENGTH = 45;
@@ -113,7 +113,7 @@ function generateMailBody(client, cart, totalHT, tvaAmount, totalTTC, formattedD
 
     cart.forEach(item => {
         const qte = String(item.quantite).padEnd(3);
-        const code = String(item.code).padEnd(17);
+        const code = `(${item.code})`.padEnd(17);
         const backorderText = item.isBackorder ? " (Attente)" : "";
         const designation = (String(item.designation) + backorderText).substring(0, DESIGNATION_LENGTH).padEnd(DESIGNATION_LENGTH); 
         const prixHT = item.prixHT.toFixed(2).padEnd(7);
@@ -128,6 +128,14 @@ function generateMailBody(client, cart, totalHT, tvaAmount, totalTTC, formattedD
     body += `Total HT            : ${totalHT.toFixed(2).padStart(alignLength)} €\n`;
     body += `TVA (${tvaRatePercentage}%)             : ${tvaAmount.toFixed(2).padStart(alignLength)} €\n`;
     body += `TOTAL TTC           : ${totalTTC.toFixed(2).padStart(alignLength)} €\n`;
+
+    if (orderComment && orderComment.trim()) {
+        body += `${ARTICLE_SEPARATOR}\n`;
+        body += "COMMENTAIRE DE COMMANDE\n";
+        body += ARTICLE_SEPARATOR;
+        body += `${orderComment.trim()}\n`;
+    }
+
     body += `${HEADER_LINE}Merci pour votre commande.\n`;
     return body;
 }
@@ -151,7 +159,7 @@ export function checkoutOrder() {
     const tvaAmount = totalHT * TVA_RATE;
     const totalTTC = totalHT + tvaAmount;
 
-    const summary = generateMailBody(appState.selectedClient, appState.cart, totalHT, tvaAmount, totalTTC, formattedDateTime, appState.deliveryDate);
+    const summary = generateMailBody(appState.selectedClient, appState.cart, totalHT, tvaAmount, totalTTC, formattedDateTime, appState.deliveryDate, appState.orderComment);
     const simpleSummary = `Commande pour ${appState.selectedClient[CLIENT_NAME_FIELD]} (${appState.selectedClient[CLIENT_CITY_FIELD]}).\nTotal TTC: ${totalTTC.toFixed(2)} €`;
     const confirmation = confirm(`--- Récapitulatif de la commande ---\n\n${simpleSummary}\n\nConfirmez-vous la commande et souhaitez l'envoyer par e-mail ?`);
 

@@ -54,6 +54,7 @@ export const appState = {
     filteredClients: [],
     selectedClient: null,
     cart: [],
+    orderComment: '', // Commentaire libre ajouté à la commande en cours
     deliveryDate: new Date(),
     initialDeliveryDate: new Date(),
     nuancesData: {}, // NOUVEAU: Pour stocker les données des nuanciers
@@ -77,6 +78,10 @@ export function setSelectedClient(client) {
 
 export function setCart(newCart) {
     appState.cart = newCart;
+}
+
+export function setOrderComment(comment) {
+    appState.orderComment = comment;
 }
 
 export function setDeliveryDate(newDate) {
