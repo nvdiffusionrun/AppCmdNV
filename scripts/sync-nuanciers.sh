@@ -4,10 +4,12 @@
 #
 # - Copie chaque nuancier modifié dans SiteNVD vers Nuanciers/
 # - Normalise les fins de ligne (CRLF -> LF)
-# - Corrige le tiret cadratin (–) en double tiret (--), coquille récurrente
-#   quand les codes articles sont retapés à la main
-# - Vérifie que chaque code article référencé existe dans la base articles
-# - Signale les codes en double au sein d'une même ligne (bouton dupliqué)
+# - Pour les nuanciers au format "nom:code" (point-virgule) : corrige la
+#   coquille récurrente du tiret cadratin (–) en double tiret (--), vérifie
+#   que chaque code article référencé existe dans la base articles, et
+#   signale les codes en double au sein d'une même ligne (bouton dupliqué)
+# - Keragold.csv a un format différent (colonnes nommées, virgules, texte
+#   libre) : uniquement copié et normalisé, sans les vérifications ci-dessus
 
 set -euo pipefail
 
@@ -33,9 +35,15 @@ for src_file in "$SRC_DIR"/*.csv; do
         continue
     fi
 
-    # Normalise CRLF -> LF et corrige le tiret cadratin -> double tiret
+    # Normalise CRLF -> LF ; corrige le tiret cadratin -> double tiret
+    # uniquement pour les nuanciers "nom:code" (pas Keragold, format libre où
+    # un tiret cadratin peut être une vraie ponctuation à ne pas toucher)
     tmp_file="$(mktemp)"
-    tr -d '\r' < "$src_file" | sed 's/–/--/g' > "$tmp_file"
+    if [ "$filename" = "Keragold.csv" ]; then
+        tr -d '\r' < "$src_file" > "$tmp_file"
+    else
+        tr -d '\r' < "$src_file" | sed 's/–/--/g' > "$tmp_file"
+    fi
 
     if diff -q "$tmp_file" "$dest_file" > /dev/null 2>&1; then
         rm "$tmp_file"
@@ -45,6 +53,10 @@ for src_file in "$SRC_DIR"/*.csv; do
     mv "$tmp_file" "$dest_file"
     changed=$((changed + 1))
     echo "Mis à jour : $filename"
+
+    if [ "$filename" = "Keragold.csv" ]; then
+        continue
+    fi
 
     # Validation des codes articles référencés
     tail -n +2 "$dest_file" | tr ';' '\n' | grep ':' | cut -d: -f2 | sort -u | while read -r code; do
