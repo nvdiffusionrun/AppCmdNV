@@ -1,70 +1,70 @@
-﻿Gamme,Type/Nom de Gamme,Ingrédients Clés,Bénéfices,Description longue,Produit,Contenance,Photos,Prix achat,Prix de revient,Prix HT,Prix TTC,Référence (SKU),Marge
+﻿Gamme,Type/Nom de Gamme,Ingrédients Clés,Bénéfices,Description longue,Produit,Contenance,Photos,Prix achat,Prix de revient,Prix HT,Prix TTC,Référence (SKU),Marge,Code Article Machine
 AB,Gamme Régénérante,Kératine et Extrait d'Ail,"Pour cheveux éteints et opaques, redonne santé et tonus.","La gamme régénérante sans sulfate à la Kératine et extrait d ail.
 Idéal pour cheveux traités, lissés et abimés, soumis aux colorations et décolorations.
 Protège et illumine le cheveu éteint et opaque, procure un aspect sain et tonique.
-Régénère la structure capillaire, redonne de l’éclat et brillance au cheveu.",Shampooing AB,500ML,,"€3,35",5.025,€11.89,"€12,90",K24055,2.366
+Régénère la structure capillaire, redonne de l’éclat et brillance au cheveu.",Shampooing AB,500ML,,"€3,35",5.025,€11.89,"€12,90",K24055,2.366,SHPKGABAIL500
 AB,Gamme Régénérante,Kératine et Extrait d'Ail,"Pour cheveux éteints et opaques, redonne santé et tonus.","La gamme régénérante sans sulfate à la Kératine et extrait d ail.
 Idéal pour cheveux traités, lissés et abimés, soumis aux colorations et décolorations.
 Protège et illumine le cheveu éteint et opaque, procure un aspect sain et tonique.
-Régénère la structure capillaire, redonne de l’éclat et brillance au cheveu.",Sérum AB,100ML,1_KERAGOLD_pro_Serum_PROFESSIONNEL_keratine_et_extrait_d_ail_AB.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/5ecYEjXdyC8dHqAr-KQ59Q/4dG4ka-zdhdfdEhrRZjwPZiO82wUC01PjpkwKWAnQ_5QMD89GGbYuTm1yzLV4h7_kzv7axmYW5CreuO_oxvDlpy0BeEdnV7AuAm708lEbmdRhgNlpWKU8jDZO5t3f_iNDvVN2j1i-SabnhXsnR5LX6oTaaqy4ioHAhmN6zNpnSh6RnxmeccBOUnivci1KOJZJqyvokdInJ4H7NYG6yRPVZ9s_tq-AlXLmJ8Qo7p0Big/Cqvil-W0yPv0rkaCxel0OlKEhl1usR80AO-lhCcugmw),"€3,95",5.925,€13.73,"€14,90",K24058,2.318
+Régénère la structure capillaire, redonne de l’éclat et brillance au cheveu.",Sérum AB,100ML,1_KERAGOLD_pro_Serum_PROFESSIONNEL_keratine_et_extrait_d_ail_AB.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/5ecYEjXdyC8dHqAr-KQ59Q/4dG4ka-zdhdfdEhrRZjwPZiO82wUC01PjpkwKWAnQ_5QMD89GGbYuTm1yzLV4h7_kzv7axmYW5CreuO_oxvDlpy0BeEdnV7AuAm708lEbmdRhgNlpWKU8jDZO5t3f_iNDvVN2j1i-SabnhXsnR5LX6oTaaqy4ioHAhmN6zNpnSh6RnxmeccBOUnivci1KOJZJqyvokdInJ4H7NYG6yRPVZ9s_tq-AlXLmJ8Qo7p0Big/Cqvil-W0yPv0rkaCxel0OlKEhl1usR80AO-lhCcugmw),"€3,95",5.925,€13.73,"€14,90",K24058,2.318,SERKGABAIL100
 AB,Gamme Régénérante,Kératine et Extrait d'Ail,"Pour cheveux éteints et opaques, redonne santé et tonus.","La gamme régénérante sans sulfate à la Kératine et extrait d ail.
 Idéal pour cheveux traités, lissés et abimés, soumis aux colorations et décolorations.
 Protège et illumine le cheveu éteint et opaque, procure un aspect sain et tonique.
-Régénère la structure capillaire, redonne de l’éclat et brillance au cheveu.",Masque AB,500ML,,"€2,45",3.675,€10.05,"€10,90",K24057,2.734
+Régénère la structure capillaire, redonne de l’éclat et brillance au cheveu.",Masque AB,500ML,,"€2,45",3.675,€10.05,"€10,90",K24057,2.734,MASKGABAIL500
 AC,Gamme Réparateur,Acide Hyaluronique & Huile d'Amla,"Répare le cuir chevelu, favorise la croissance et prévient la chute.","La gamme réparateur à la kératine, acide hyaluronique et huile d'Amla, sans sulfate pour toutes les typologie de cheveux, réparent le cuir chevelu, favorise la croissance et préviens la chute du cheveu.
-La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Shampooing AC,500ML,,"€3,35",5.025,€11.89,"€12,90",K42001,2.366
+La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Shampooing AC,500ML,,"€3,35",5.025,€11.89,"€12,90",K42001,2.366,SHPKGACAML500
 AC,Gamme Réparateur,Acide Hyaluronique & Huile d'Amla,"Répare le cuir chevelu, favorise la croissance et prévient la chute.","La gamme réparateur à la kératine, acide hyaluronique et huile d'Amla, sans sulfate pour toutes les typologie de cheveux, réparent le cuir chevelu, favorise la croissance et préviens la chute du cheveu.
-La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Shampooing AC,1000ML,,"€4,95",7.425,€16.50,"€17,90",K42005,2.222
+La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Shampooing AC,1000ML,,"€4,95",7.425,€16.50,"€17,90",K42005,2.222,SHPKGACAML1LT
 AC,Gamme Réparateur,Acide Hyaluronique & Huile d'Amla,"Répare le cuir chevelu, favorise la croissance et prévient la chute.","La gamme réparateur à la kératine, acide hyaluronique et huile d'Amla, sans sulfate pour toutes les typologie de cheveux, réparent le cuir chevelu, favorise la croissance et préviens la chute du cheveu.
-La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Shampooing AC,250ML,,"€1,85",2.775,€8.20,"€8,90",K42004,2.956
+La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Shampooing AC,250ML,,"€1,85",2.775,€8.20,"€8,90",K42004,2.956,SHPKGACAML250
 AC,Gamme Réparateur,Acide Hyaluronique & Huile d'Amla,"Répare le cuir chevelu, favorise la croissance et prévient la chute.","La gamme réparateur à la kératine, acide hyaluronique et huile d'Amla, sans sulfate pour toutes les typologie de cheveux, réparent le cuir chevelu, favorise la croissance et préviens la chute du cheveu.
-La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Sérum AC,100ML,,"€3,95",5.925,€13.73,"€14,90",K42003,2.318
+La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Sérum AC,100ML,,"€3,95",5.925,€13.73,"€14,90",K42003,2.318,SERKGACAML100
 AC,Gamme Réparateur,Acide Hyaluronique & Huile d'Amla,"Répare le cuir chevelu, favorise la croissance et prévient la chute.","La gamme réparateur à la kératine, acide hyaluronique et huile d'Amla, sans sulfate pour toutes les typologie de cheveux, réparent le cuir chevelu, favorise la croissance et préviens la chute du cheveu.
-La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Masque AC,500ML,,"€2,45",3.675,€10.05,"€10,90",K42002,2.734
+La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Masque AC,500ML,,"€2,45",3.675,€10.05,"€10,90",K42002,2.734,MASKGACAML500
 AC,Gamme Réparateur,Acide Hyaluronique & Huile d'Amla,"Répare le cuir chevelu, favorise la croissance et prévient la chute.","La gamme réparateur à la kératine, acide hyaluronique et huile d'Amla, sans sulfate pour toutes les typologie de cheveux, réparent le cuir chevelu, favorise la croissance et préviens la chute du cheveu.
-La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Masque AC,1000ML,,"€3,65",5.475,€14.65,"€15,90",K42006,2.677
+La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Masque AC,1000ML,,"€3,65",5.475,€14.65,"€15,90",K42006,2.677,MASKGACAML1LT
 AC,Gamme Réparateur,Acide Hyaluronique & Huile d'Amla,"Répare le cuir chevelu, favorise la croissance et prévient la chute.","La gamme réparateur à la kératine, acide hyaluronique et huile d'Amla, sans sulfate pour toutes les typologie de cheveux, réparent le cuir chevelu, favorise la croissance et préviens la chute du cheveu.
-La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Crème AC,200ML,,"€2,25",3.375,€10.05,"€10,90",K42007,2.977
+La synergie de ses ingrédients agit efficacement pour redonner force et un effet sublime aux cheveux.",Crème AC,200ML,,"€2,25",3.375,€10.05,"€10,90",K42007,2.977,CCFKGACAML200
 AVOCAT,Nutrition Vegan,Avocat & Beurre de Karité,Nourrit en profondeur les cheveux très secs et crépus.,"Spécifiquement conçu à base d'avocat et de beurre de karité, nourrit en profondeur et apporte
 souplesse et discipline aux cheveux très secs et crépus.
 Sa formulation végan nourrit, intensément les cheveux et renforce durablement, la fibre capillaire
-pour un résultat soyeux et lumineux, procure aux cheveux un parfum irrésistible.",Shampooing-Douche Avocat,500ML,,"€3,35",5.025,€11.89,"€12,90",K51001,2.366
+pour un résultat soyeux et lumineux, procure aux cheveux un parfum irrésistible.",Shampooing-Douche Avocat,500ML,,"€3,35",5.025,€11.89,"€12,90",K51001,2.366,SHPKGKGGAV500
 AVOCAT,Nutrition Vegan,Avocat & Beurre de Karité,Nourrit en profondeur les cheveux très secs et crépus.,"Spécifiquement conçu à base d'avocat et de beurre de karité, nourrit en profondeur et apporte
 souplesse et discipline aux cheveux très secs et crépus.
 Sa formulation végan nourrit, intensément les cheveux et renforce durablement, la fibre capillaire
-pour un résultat soyeux et lumineux, procure aux cheveux un parfum irrésistible.",Sérum Avocat,100ML,,"€3,95",5.925,€13.73,"€14,90",K51003,2.318
+pour un résultat soyeux et lumineux, procure aux cheveux un parfum irrésistible.",Sérum Avocat,100ML,,"€3,95",5.925,€13.73,"€14,90",K51003,2.318,SERKGKGGAV100
 AVOCAT,Nutrition Vegan,Avocat & Beurre de Karité,Nourrit en profondeur les cheveux très secs et crépus.,"Spécifiquement conçu à base d'avocat et de beurre de karité, nourrit en profondeur et apporte
 souplesse et discipline aux cheveux très secs et crépus.
 Sa formulation végan nourrit, intensément les cheveux et renforce durablement, la fibre capillaire
-pour un résultat soyeux et lumineux, procure aux cheveux un parfum irrésistible.",Crème Avocat,200ML,creme-soin-nutrition-keragold-green-200ml.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/L7galhki7OYlyRRn6QRKrQ/Mp4st-nBn_P8rYcyRtPorfCAjOnUE1X-ZJUrZ0vjnzyafDlWerZPWxb66oF0devzDtCukMqtOYP-PqDDL-ytlQBjayKjpMwiK9RyAYPdY0FYZMP_8h6X-hbKTCJGdN-Z11JHjQS5WWdI3V9jvcQame3eedExUY3YSTGgACyoWbIUoDsR6B7Twh-Kbh3-KVF8dNCetadYKfvUIuWPsGGWGg/60XhdFMCRv0ObnG9TWX49Npe8SkuTcCfh_1ovjO0eVM),"€2,35",3.525,€10.05,"€10,90",K51004,2.850
+pour un résultat soyeux et lumineux, procure aux cheveux un parfum irrésistible.",Crème Avocat,200ML,creme-soin-nutrition-keragold-green-200ml.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/L7galhki7OYlyRRn6QRKrQ/Mp4st-nBn_P8rYcyRtPorfCAjOnUE1X-ZJUrZ0vjnzyafDlWerZPWxb66oF0devzDtCukMqtOYP-PqDDL-ytlQBjayKjpMwiK9RyAYPdY0FYZMP_8h6X-hbKTCJGdN-Z11JHjQS5WWdI3V9jvcQame3eedExUY3YSTGgACyoWbIUoDsR6B7Twh-Kbh3-KVF8dNCetadYKfvUIuWPsGGWGg/60XhdFMCRv0ObnG9TWX49Npe8SkuTcCfh_1ovjO0eVM),"€2,35",3.525,€10.05,"€10,90",K51004,2.850,CCFKGKGGAV200
 BC,Gamme Nourrissante,Kératine et Huile de Coco,"Idéal pour cheveux secs, ternes et frisés. Maintient l'hydratation.","La gamme nourrissante sans sulfate à la Kératine et Huile de Coco, idéal pour cheveux secs, terne et frisés.
 Lave et nourrit délicatement le cheveux tout en préservant son éclat, sa douceur et son taux d'hydratation naturelle.
 Sa formule hautement nutritive maintient l'hydratation des cuticules et discipline, les cheveux rebelles pour donner un aspect soyeux
-brillant et volumineux.",Shampooing BC,500ML,,"€3,35",5.025,€11.89,"€12,90",K24080,2.366
+brillant et volumineux.",Shampooing BC,500ML,,"€3,35",5.025,€11.89,"€12,90",K24080,2.366,SHPKGBCOCO500
 BC,Gamme Nourrissante,Kératine et Huile de Coco,"Idéal pour cheveux secs, ternes et frisés. Maintient l'hydratation.","La gamme nourrissante sans sulfate à la Kératine et Huile de Coco, idéal pour cheveux secs, terne et frisés.
 Lave et nourrit délicatement le cheveux tout en préservant son éclat, sa douceur et son taux d'hydratation naturelle.
 Sa formule hautement nutritive maintient l'hydratation des cuticules et discipline, les cheveux rebelles pour donner un aspect soyeux
-brillant et volumineux.",Shampooing BC,1000ML,,"€4,95",7.425,€16.50,"€17,90",K24086,2.222
+brillant et volumineux.",Shampooing BC,1000ML,,"€4,95",7.425,€16.50,"€17,90",K24086,2.222,SHPKGBCOCO1LT
 BC,Gamme Nourrissante,Kératine et Huile de Coco,"Idéal pour cheveux secs, ternes et frisés. Maintient l'hydratation.","La gamme nourrissante sans sulfate à la Kératine et Huile de Coco, idéal pour cheveux secs, terne et frisés.
 Lave et nourrit délicatement le cheveux tout en préservant son éclat, sa douceur et son taux d'hydratation naturelle.
 Sa formule hautement nutritive maintient l'hydratation des cuticules et discipline, les cheveux rebelles pour donner un aspect soyeux
-brillant et volumineux.",Shampooing BC,250ML,,"€1,85",2.775,€8.20,"€8,90",K24081,2.956
+brillant et volumineux.",Shampooing BC,250ML,,"€1,85",2.775,€8.20,"€8,90",K24081,2.956,SHPKGBCOCO250
 BC,Gamme Nourrissante,Kératine et Huile de Coco,"Idéal pour cheveux secs, ternes et frisés. Maintient l'hydratation.","La gamme nourrissante sans sulfate à la Kératine et Huile de Coco, idéal pour cheveux secs, terne et frisés.
 Lave et nourrit délicatement le cheveux tout en préservant son éclat, sa douceur et son taux d'hydratation naturelle.
 Sa formule hautement nutritive maintient l'hydratation des cuticules et discipline, les cheveux rebelles pour donner un aspect soyeux
-brillant et volumineux.",Sérum BC,100ML,huile-coco-bc-keragold-100ml.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/PBIfoYCTlQvqwIOMNZE2IQ/UjpJejLziwBApPxIHRp3h-l63T7w9K-KYl3AHddITYetizxIlA8tIHyCgG8qP7NMgrxrn5HwYLzUZ4YqvzKOZdQz2RrYP0-ZZEj5fPUAnWTiNA54opZPZcUu8Okl4xLFmoCF7UJtU9ab4u9S6qhZhxpS9Gf_pFH3-xhIwQsGU98HfLcnX5PIfaVxOZgNWa2m/zFJtpPVOUz9jDA32MT97FgyCLxcfsk8lsxGt3hfZkbY),"€3,95",5.925,€13.73,"€14,90",K24083,2.318
+brillant et volumineux.",Sérum BC,100ML,huile-coco-bc-keragold-100ml.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/PBIfoYCTlQvqwIOMNZE2IQ/UjpJejLziwBApPxIHRp3h-l63T7w9K-KYl3AHddITYetizxIlA8tIHyCgG8qP7NMgrxrn5HwYLzUZ4YqvzKOZdQz2RrYP0-ZZEj5fPUAnWTiNA54opZPZcUu8Okl4xLFmoCF7UJtU9ab4u9S6qhZhxpS9Gf_pFH3-xhIwQsGU98HfLcnX5PIfaVxOZgNWa2m/zFJtpPVOUz9jDA32MT97FgyCLxcfsk8lsxGt3hfZkbY),"€3,95",5.925,€13.73,"€14,90",K24083,2.318,SERKGBCOCO100
 BC,Gamme Nourrissante,Kératine et Huile de Coco,"Idéal pour cheveux secs, ternes et frisés. Maintient l'hydratation.","La gamme nourrissante sans sulfate à la Kératine et Huile de Coco, idéal pour cheveux secs, terne et frisés.
 Lave et nourrit délicatement le cheveux tout en préservant son éclat, sa douceur et son taux d'hydratation naturelle.
 Sa formule hautement nutritive maintient l'hydratation des cuticules et discipline, les cheveux rebelles pour donner un aspect soyeux
-brillant et volumineux.",Masque BC,500ML,,"€2,45",3.675,€10.05,"€10,90",K24082,2.734
+brillant et volumineux.",Masque BC,500ML,,"€2,45",3.675,€10.05,"€10,90",K24082,2.734,MASKGBCOCO500
 BC,Gamme Nourrissante,Kératine et Huile de Coco,"Idéal pour cheveux secs, ternes et frisés. Maintient l'hydratation.","La gamme nourrissante sans sulfate à la Kératine et Huile de Coco, idéal pour cheveux secs, terne et frisés.
 Lave et nourrit délicatement le cheveux tout en préservant son éclat, sa douceur et son taux d'hydratation naturelle.
 Sa formule hautement nutritive maintient l'hydratation des cuticules et discipline, les cheveux rebelles pour donner un aspect soyeux
-brillant et volumineux.",Masque BC,1000ML,,"€3,65",5.475,€14.65,"€15,90",K24087,2.677
+brillant et volumineux.",Masque BC,1000ML,,"€3,65",5.475,€14.65,"€15,90",K24087,2.677,MASKGBCOCO1LT
 BC,Gamme Nourrissante,Kératine et Huile de Coco,"Idéal pour cheveux secs, ternes et frisés. Maintient l'hydratation.","La gamme nourrissante sans sulfate à la Kératine et Huile de Coco, idéal pour cheveux secs, terne et frisés.
 Lave et nourrit délicatement le cheveux tout en préservant son éclat, sa douceur et son taux d'hydratation naturelle.
 Sa formule hautement nutritive maintient l'hydratation des cuticules et discipline, les cheveux rebelles pour donner un aspect soyeux
-brillant et volumineux.",Crème BC,200ML,creme-definition-boucles-bc-keragold-200ml.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/j97-4WS-c2XZHn__NbERfw/MYQq_SQ4T5fwE2j5OO02XhwhDv832bzPQcM2Vzr7550WG8HzKLR0xNmBGWJdmypJ9ewVW374AFqTq2etxHTYAGG5SEgz5Uk2E6DmgCZx-ycM2duY9mWtR-R5YxHFSfUdp37cZ37EZglyALuRY5HeYtITGDy8YFNmIuqkDBFyS0kX0COf9W6GV80kFCULckc6jvQQw2mlhkfc6jkjxHecHQ/3VBXdwHEquTjy2131_szWI0w6Htag6vdqd4cVT5be2Y),"€2,95",4.425,€10.05,"€10,90",K24089,2.270
+brillant et volumineux.",Crème BC,200ML,creme-definition-boucles-bc-keragold-200ml.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/j97-4WS-c2XZHn__NbERfw/MYQq_SQ4T5fwE2j5OO02XhwhDv832bzPQcM2Vzr7550WG8HzKLR0xNmBGWJdmypJ9ewVW374AFqTq2etxHTYAGG5SEgz5Uk2E6DmgCZx-ycM2duY9mWtR-R5YxHFSfUdp37cZ37EZglyALuRY5HeYtITGDy8YFNmIuqkDBFyS0kX0COf9W6GV80kFCULckc6jvQQw2mlhkfc6jkjxHecHQ/3VBXdwHEquTjy2131_szWI0w6Htag6vdqd4cVT5be2Y),"€2,95",4.425,€10.05,"€10,90",K24089,2.270,CCFKGBCOCO200
 BH,Gamme Boucles,"Kératine, huile d'avocat et Phyto-céramide",Pour cheveux bouclés,"Sa formulation Hydra-curls enrichie à
 la Kératine, infusée à l’Huile d’avocat
 et à la Céramide B, nettoie et hydrate
@@ -79,7 +79,7 @@ crépus.
 Sans sulfates, sans silicones ni
 parabènes, la gamme BH respecte
 l’équilibre du cheveu et révèle la
-beauté de chaque texture.",Shampoing BH,500ML,,"€3,35",5.025,€11.89,"€12,90",K56002,2.366
+beauté de chaque texture.",Shampoing BH,500ML,,"€3,35",5.025,€11.89,"€12,90",K56002,2.366,SHPKGBHPHY500
 BH,Gamme Boucles,"Kératine, huile d'avocat et Phyto-céramide",Pour cheveux bouclés,"Sa formulation Hydra-curls enrichie à
 la Kératine, infusée à l’Huile d’avocat
 et à la Céramide B, nettoie et hydrate
@@ -94,7 +94,7 @@ crépus.
 Sans sulfates, sans silicones ni
 parabènes, la gamme BH respecte
 l’équilibre du cheveu et révèle la
-beauté de chaque texture.",Masque BH,500ML,,"€2,55",3.825,€10.05,"€10,90",K56004,2.626
+beauté de chaque texture.",Masque BH,500ML,,"€2,55",3.825,€10.05,"€10,90",K56004,2.626,MASKGBHPHY500
 BH,Gamme Boucles,"Kératine, huile d'avocat et Phyto-céramide",Pour cheveux bouclés,"Sa formulation Hydra-curls enrichie à
 la Kératine, infusée à l’Huile d’avocat
 et à la Céramide B, nettoie et hydrate
@@ -109,174 +109,174 @@ crépus.
 Sans sulfates, sans silicones ni
 parabènes, la gamme BH respecte
 l’équilibre du cheveu et révèle la
-beauté de chaque texture.",Gelée définition boucles BH,200ML,,"€2,55",3.825,€11.89,"€12,90",K56006,3.108
+beauté de chaque texture.",Gelée définition boucles BH,200ML,,"€2,55",3.825,€11.89,"€12,90",K56006,3.108,CCFKGBHPHY200
 BOTOXINE AB,Shampoing Professionnel Profond,Kératine,"Shampoing professionnel concentré, sans sulfates, 90% d'origine naturelle","Le Shampoing Botoxine Professionnel Keragold Pro, un shampoing sans sulfates spécialement
 formulé pour revitaliser, renforcer et lisser la fibre capillaire.
 Enrichi en kératine concentrée, ce shampoing agit en profondeur pour restaurer la structure du
 cheveu, combler les fissures et adoucir.
 Idéal pour les cheveux abîmés, secs ou traités, il procure une hydratation intense, réduit les
-frisottis et facilite le coiffage tout en préservant la légèreté de votre chevelure.",Shampoing Botoxine AB,475ML,,"€5,95",8.925,€20.18,"€21,90",K26002,2.262
+frisottis et facilite le coiffage tout en préservant la légèreté de votre chevelure.",Shampoing Botoxine AB,475ML,,"€5,95",8.925,€20.18,"€21,90",K26002,2.262,SHPKGBTXAB475
 BOTOXINE AB,Masque Professionnel Profond,Kératine,"Soin profond sans sulfates, lifting capillaire, hydratation intense.","Le Masque Botoxine Professionnel Keragold Pro, un soin profond sans sulfates enrichi en kératine
 conçu pour restaurer, renforcer et sublimer la fibre capillaire.
 Sa formule professionnelle est un lifting capillaire, offrant une hydratation intense, une douceur
 soyeuse et une brillance dès la première application. Il réduit les frisottis, facilite le coiffage
-et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine AB,500ML,,"€5,45",8.175,€18.06,"€19,60",K54002,2.210
+et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine AB,500ML,,"€5,45",8.175,€18.06,"€19,60",K54002,2.210,MASKGBTXAB500
 BOTOXINE BC,Shampoing Professionnel Profond,Kératine,"Shampoing professionnel concentré, sans sulfates, 90% d'origine naturelle","Le Shampoing Botoxine Professionnel Keragold Pro, un shampoing sans sulfates spécialement
 formulé pour revitaliser, renforcer et lisser la fibre capillaire.
 Enrichi en kératine concentrée, ce shampoing agit en profondeur pour restaurer la structure du
 cheveu, combler les fissures et adoucir.
 Idéal pour les cheveux abîmés, secs ou traités, il procure une hydratation intense, réduit les
-frisottis et facilite le coiffage tout en préservant la légèreté de votre chevelure.",Shampoing Botoxine BC,475ML,,"€5,95",8.925,€20.18,"€21,90",K26003,2.262
+frisottis et facilite le coiffage tout en préservant la légèreté de votre chevelure.",Shampoing Botoxine BC,475ML,,"€5,95",8.925,€20.18,"€21,90",K26003,2.262,SHPKGBTXBC475
 BOTOXINE BC,Masque Professionnel Profond,Kératine,"Soin profond sans sulfates, lifting capillaire, hydratation intense.","Le Masque Botoxine Professionnel Keragold Pro, un soin profond sans sulfates enrichi en kératine
 conçu pour restaurer, renforcer et sublimer la fibre capillaire.
 Sa formule professionnelle est un lifting capillaire, offrant une hydratation intense, une douceur
 soyeuse et une brillance dès la première application. Il réduit les frisottis, facilite le coiffage
-et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine BC,500ML,,"€5,45",8.175,€18.06,"€19,60",K54003,2.210
+et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine BC,500ML,,"€5,45",8.175,€18.06,"€19,60",K54003,2.210,MASKGBTXBC500
 BOTOXINE DD,Shampoing Professionnel Profond,Kératine,"Shampoing professionnel concentré, sans sulfates, 90% d'origine naturelle","Le Shampoing Botoxine Professionnel Keragold Pro, un shampoing sans sulfates spécialement
 formulé pour revitaliser, renforcer et lisser la fibre capillaire.
 Enrichi en kératine concentrée, ce shampoing agit en profondeur pour restaurer la structure du
 cheveu, combler les fissures et adoucir.
 Idéal pour les cheveux abîmés, secs ou traités, il procure une hydratation intense, réduit les
-frisottis et facilite le coiffage tout en préservant la légèreté de votre chevelure.",Shampoing Botoxine DD,475ML,,"€5,95",8.925,€20.18,"€21,90",K26001,2.262
+frisottis et facilite le coiffage tout en préservant la légèreté de votre chevelure.",Shampoing Botoxine DD,475ML,,"€5,95",8.925,€20.18,"€21,90",K26001,2.262,SHPKGBTXDD475
 BOTOXINE DD,Masque Professionnel Profond,Kératine,"Soin profond sans sulfates, lifting capillaire, hydratation intense.","Le Masque Botoxine Professionnel Keragold Pro, un soin profond sans sulfates enrichi en kératine
 conçu pour restaurer, renforcer et sublimer la fibre capillaire.
 Sa formule professionnelle est un lifting capillaire, offrant une hydratation intense, une douceur
 soyeuse et une brillance dès la première application. Il réduit les frisottis, facilite le coiffage
-et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine DD,500ML,,"€5,45",8.175,€18.06,"€19,60",K54001,2.210
+et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine DD,500ML,,"€5,45",8.175,€18.06,"€19,60",K54001,2.210,MASKGBTXDD500
 BOTOXINE DD,Masque Professionnel Profond,Kératine,"Soin profond sans sulfates, lifting capillaire, hydratation intense.","Le Masque Botoxine Professionnel Keragold Pro, un soin profond sans sulfates enrichi en kératine
 conçu pour restaurer, renforcer et sublimer la fibre capillaire.
 Sa formule professionnelle est un lifting capillaire, offrant une hydratation intense, une douceur
 soyeuse et une brillance dès la première application. Il réduit les frisottis, facilite le coiffage
-et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine DD,1000ML,,"€11,00",16.500,€36.77,"€39,90",K25001,2.229
+et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine DD,1000ML,,"€11,00",16.500,€36.77,"€39,90",K25001,2.229,MASKGBTXDD1LT
 BOTOXINE XL,Shampoing Professionnel Profond,Kératine,"Shampoing professionnel concentré, sans sulfates, 90% d'origine naturelle","Le Shampoing Botoxine Professionnel Keragold Pro, un shampoing sans sulfates spécialement
 formulé pour revitaliser, renforcer et lisser la fibre capillaire.
 Enrichi en kératine concentrée, ce shampoing agit en profondeur pour restaurer la structure du
 cheveu, combler les fissures et adoucir.
 Idéal pour les cheveux abîmés, secs ou traités, il procure une hydratation intense, réduit les
-frisottis et facilite le coiffage tout en préservant la légèreté de votre chevelure.",Shampoing Botoxine XL,475ML,,"€5,95",8.925,€20.18,"€21,90",K26004,2.262
+frisottis et facilite le coiffage tout en préservant la légèreté de votre chevelure.",Shampoing Botoxine XL,475ML,,"€5,95",8.925,€20.18,"€21,90",K26004,2.262,SHPKGBTXXL475
 BOTOXINE XL,Masque Professionnel Profond,Kératine,"Soin profond sans sulfates, lifting capillaire, hydratation intense.","Le Masque Botoxine Professionnel Keragold Pro, un soin profond sans sulfates enrichi en kératine
 conçu pour restaurer, renforcer et sublimer la fibre capillaire.
 Sa formule professionnelle est un lifting capillaire, offrant une hydratation intense, une douceur
 soyeuse et une brillance dès la première application. Il réduit les frisottis, facilite le coiffage
-et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine XL,500ML,,"€5,45",8.175,€18.34,"€19,90",K54004,2.244
+et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine XL,500ML,,"€5,45",8.175,€18.34,"€19,90",K54004,2.244,MASKGBTXXL500
 BOTOXINE XL,Masque Professionnel Profond,Kératine,"Soin profond sans sulfates, lifting capillaire, hydratation intense.","Le Masque Botoxine Professionnel Keragold Pro, un soin profond sans sulfates enrichi en kératine
 conçu pour restaurer, renforcer et sublimer la fibre capillaire.
 Sa formule professionnelle est un lifting capillaire, offrant une hydratation intense, une douceur
 soyeuse et une brillance dès la première application. Il réduit les frisottis, facilite le coiffage
-et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine XL,1000ML,,"€11,00",16.500,€36.77,"€39,90",K25004,2.229
+et prolonge les effets des traitements lissants et réparateurs.",Masque Botoxine XL,1000ML,,"€11,00",16.500,€36.77,"€39,90",K25004,2.229,MASKGBTXXL1LT
 CC,Gamme Restructurante,Kératine et Huile de Ricin,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme restructurante à la kératine et huile de ricin, sans sulfate, pour cheveux traités, abîmés.
 Agit efficacement en favorisant une action restructurante, hydratante et nourrissante en profondeur.
-Discipline les cheveux, élimine l'effet crépu et donne un éclat extraordinaire.",Shampooing CC,500ML,,"€3,35",5.025,€11.89,"€12,90",K22452,2.366
+Discipline les cheveux, élimine l'effet crépu et donne un éclat extraordinaire.",Shampooing CC,500ML,,"€3,35",5.025,€11.89,"€12,90",K22452,2.366,SHPKGCCRIC500
 CC,Gamme Restructurante,Kératine et Huile de Ricin,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme restructurante à la kératine et huile de ricin, sans sulfate, pour cheveux traités, abîmés.
 Agit efficacement en favorisant une action restructurante, hydratante et nourrissante en profondeur.
-Discipline les cheveux, élimine l'effet crépu et donne un éclat extraordinaire.",Sérum CC,100ML,,"€3,95",5.925,€13.73,"€14,90",K22456,2.318
+Discipline les cheveux, élimine l'effet crépu et donne un éclat extraordinaire.",Sérum CC,100ML,,"€3,95",5.925,€13.73,"€14,90",K22456,2.318,SERKGCCRIC100
 CC,Gamme Restructurante,Kératine et Huile de Ricin,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme restructurante à la kératine et huile de ricin, sans sulfate, pour cheveux traités, abîmés.
 Agit efficacement en favorisant une action restructurante, hydratante et nourrissante en profondeur.
-Discipline les cheveux, élimine l'effet crépu et donne un éclat extraordinaire.",Masque CC,500ML,,"€2,45",3.675,€11.89,"€12,90",K22454,3.235
+Discipline les cheveux, élimine l'effet crépu et donne un éclat extraordinaire.",Masque CC,500ML,,"€2,45",3.675,€11.89,"€12,90",K22454,3.235,MASKGCCRIC500
 CC,Gamme Restructurante,Kératine et Huile de Ricin,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme restructurante à la kératine et huile de ricin, sans sulfate, pour cheveux traités, abîmés.
 Agit efficacement en favorisant une action restructurante, hydratante et nourrissante en profondeur.
-Discipline les cheveux, élimine l'effet crépu et donne un éclat extraordinaire.",Crème CC,250ML,,"€2,25",3.375,€11.89,"€12,90",K22460,3.523
+Discipline les cheveux, élimine l'effet crépu et donne un éclat extraordinaire.",Crème CC,250ML,,"€2,25",3.375,€11.89,"€12,90",K22460,3.523,CCFKGCCRIC250
 DD,Gamme Régénérante,Kératine et Acide Hyaluronique,"Après traitement, fortifie la fibre en fixant la couleur.","La gamme après traitement sans sulfate à la kératine et à l'acide hyaluronique.
 Idéal pour cheveux, traités, lissés, colorés et permanentés.
 Avec sa formule ultra douce, sans sulfate, sans parabènes, ni chlorure de sodium ajouté.
 Il fortifie la fibre depuis l'intérieur en fixant la couleur en soudant la cuticule.
-Il rend aux cheveux leur équilibre protéique naturel.",Shampoing DD,500ML,,"€3,35",5.025,€11.89,"€12,90",K22465,2.366
+Il rend aux cheveux leur équilibre protéique naturel.",Shampoing DD,500ML,,"€3,35",5.025,€11.89,"€12,90",K22463,2.366,SHPKGDDKAH500
 DD,Gamme Régénérante,Kératine et Acide Hyaluronique,"Après traitement, fortifie la fibre en fixant la couleur.","La gamme après traitement sans sulfate à la kératine et à l'acide hyaluronique.
 Idéal pour cheveux, traités, lissés, colorés et permanentés.
 Avec sa formule ultra douce, sans sulfate, sans parabènes, ni chlorure de sodium ajouté.
 Il fortifie la fibre depuis l'intérieur en fixant la couleur en soudant la cuticule.
-Il rend aux cheveux leur équilibre protéique naturel.",Shampoing DD,250ML,imgi_36_.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/w545HgaeHdk3g8jxOWBexg/0LcLOR1xbWb3yQGxQzx6nGsOsPpTghFnOQeHMV8DjJ9Mn4Ot3KuyS0hW3-lEBQsB-P57KvpVKhqXoGt89n15YKjCZGZenfXcKvg5F_QGcOav9QMzvmg9p3VsufmfYwDbSxlwBs677lI49DJk20ZiF-zYwfLNM0fV3XRYvnB5uWk/7gWlO9obL38kb0Ut8ipu2jNqax2KY92IFzXIFpwvFNk),"€1,85",2.775,€8.20,"€8,90",K22467,2.956
+Il rend aux cheveux leur équilibre protéique naturel.",Shampoing DD,250ML,imgi_36_.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/w545HgaeHdk3g8jxOWBexg/0LcLOR1xbWb3yQGxQzx6nGsOsPpTghFnOQeHMV8DjJ9Mn4Ot3KuyS0hW3-lEBQsB-P57KvpVKhqXoGt89n15YKjCZGZenfXcKvg5F_QGcOav9QMzvmg9p3VsufmfYwDbSxlwBs677lI49DJk20ZiF-zYwfLNM0fV3XRYvnB5uWk/7gWlO9obL38kb0Ut8ipu2jNqax2KY92IFzXIFpwvFNk),"€1,85",2.775,€8.20,"€8,90",K22467,2.956,SHPKGDDKAH250
 DD,Gamme Régénérante,Kératine et Acide Hyaluronique,"Après traitement, fortifie la fibre en fixant la couleur.","La gamme après traitement sans sulfate à la kératine et à l'acide hyaluronique.
 Idéal pour cheveux, traités, lissés, colorés et permanentés.
 Avec sa formule ultra douce, sans sulfate, sans parabènes, ni chlorure de sodium ajouté.
 Il fortifie la fibre depuis l'intérieur en fixant la couleur en soudant la cuticule.
-Il rend aux cheveux leur équilibre protéique naturel.",Shampoing DD,1000ML ,,"€4,95",7.425,€16.50,"€17,90",K22467,2.222
+Il rend aux cheveux leur équilibre protéique naturel.",Shampoing DD,1000ML ,,"€4,95",7.425,€16.50,"€17,90",K22468,2.222,SHPKGDDKAH1LT
 DD,Gamme Régénérante,Kératine et Acide Hyaluronique,"Après traitement, fortifie la fibre en fixant la couleur.","La gamme après traitement sans sulfate à la kératine et à l'acide hyaluronique.
 Idéal pour cheveux, traités, lissés, colorés et permanentés.
 Avec sa formule ultra douce, sans sulfate, sans parabènes, ni chlorure de sodium ajouté.
 Il fortifie la fibre depuis l'intérieur en fixant la couleur en soudant la cuticule.
-Il rend aux cheveux leur équilibre protéique naturel.",Sérum DD,100ML,,"€3,95",5.925,€13.73,"€14,90",K22465,2.318
+Il rend aux cheveux leur équilibre protéique naturel.",Sérum DD,100ML,,"€3,95",5.925,€13.73,"€14,90",K22465,2.318,SERKGDDKAH100
 DD,Gamme Régénérante,Kératine et Acide Hyaluronique,"Après traitement, fortifie la fibre en fixant la couleur.","La gamme après traitement sans sulfate à la kératine et à l'acide hyaluronique.
 Idéal pour cheveux, traités, lissés, colorés et permanentés.
 Avec sa formule ultra douce, sans sulfate, sans parabènes, ni chlorure de sodium ajouté.
 Il fortifie la fibre depuis l'intérieur en fixant la couleur en soudant la cuticule.
-Il rend aux cheveux leur équilibre protéique naturel.",Masque DD,500ML,imgi_40_.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/AS_VsrklN51T663-3Ww2Yw/oRY-Di1Wl_Imawqi04Y-AtTyv2TmmxHfSQUdrw_vFN8EbLhnwUlionVmRWw6635Bt-FV5PILqYXFdAXQrX9aB9qERRVa3oVNxVYSjbToouJMKwepkJK1lUk2-pbQaaeXKpT9KVUBL3Ay1GkSalWn-GLTHr56RqiXGNPBo5t6K_8/Q4AM8dUQCdGDzjMBm2OGoj5XK0BBOdfQhaYkC0zqDOg),"€2,45",3.675,€11.89,"€12,90",K22464,3.235
+Il rend aux cheveux leur équilibre protéique naturel.",Masque DD,500ML,imgi_40_.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/AS_VsrklN51T663-3Ww2Yw/oRY-Di1Wl_Imawqi04Y-AtTyv2TmmxHfSQUdrw_vFN8EbLhnwUlionVmRWw6635Bt-FV5PILqYXFdAXQrX9aB9qERRVa3oVNxVYSjbToouJMKwepkJK1lUk2-pbQaaeXKpT9KVUBL3Ay1GkSalWn-GLTHr56RqiXGNPBo5t6K_8/Q4AM8dUQCdGDzjMBm2OGoj5XK0BBOdfQhaYkC0zqDOg),"€2,45",3.675,€11.89,"€12,90",K22464,3.235,MASKGDDKAH500
 DD,Gamme Régénérante,Kératine et Acide Hyaluronique,"Après traitement, fortifie la fibre en fixant la couleur.","La gamme après traitement sans sulfate à la kératine et à l'acide hyaluronique.
 Idéal pour cheveux, traités, lissés, colorés et permanentés.
 Avec sa formule ultra douce, sans sulfate, sans parabènes, ni chlorure de sodium ajouté.
 Il fortifie la fibre depuis l'intérieur en fixant la couleur en soudant la cuticule.
-Il rend aux cheveux leur équilibre protéique naturel.",Masque DD,1000ML,imgi_35_.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/1R-Ca6hu9g0TrJDCb_szMw/qo9YsBpFL9IBKMq686EsVy3bpI186crxw8X9qMiwh8-PsnQ5MculqmQHBB5Jh7IedP2CtkfzxQUJA2zOKhUPDVqYYYX7UvNpdFER0AZ9Ggh5DEpznW5nPYb1yRlLOgcZe0phe2eJqGHH0vsTpbpaC_QiaO4X--tCroSsX4sB0BU/H3dszJLmMajdY0gMRUomaIDHmjWw1th4Mlao5B-vmro),"€3,65",5.475,€14.65,"€15,90",K22469,2.677
+Il rend aux cheveux leur équilibre protéique naturel.",Masque DD,1000ML,imgi_35_.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/1R-Ca6hu9g0TrJDCb_szMw/qo9YsBpFL9IBKMq686EsVy3bpI186crxw8X9qMiwh8-PsnQ5MculqmQHBB5Jh7IedP2CtkfzxQUJA2zOKhUPDVqYYYX7UvNpdFER0AZ9Ggh5DEpznW5nPYb1yRlLOgcZe0phe2eJqGHH0vsTpbpaC_QiaO4X--tCroSsX4sB0BU/H3dszJLmMajdY0gMRUomaIDHmjWw1th4Mlao5B-vmro),"€3,65",5.475,€14.65,"€15,90",K22469,2.677,MASKGDDKAH1LT
 EXPERT KOMPLEX,Lissage Brésilien,"Kératine, Tanin & Acide Hyaluronique","Lissage & Traitement. Reconstitue la fibre, effet sublimateur.","Expert Komplex est une formule innovante qui combine LISSAGE & TRAITEMENT capillaire pour obtenir des résultats incroyables :
 cheveux lisses, protégés et réparés.
 Un effet sublimateur pour tous les types de Cheveux.
 Formule composé d'actifs qui reconstitue la fibre capillaire.
 Acide hyaluraunique : lifting capillaire
 Protéine de Tanin : Anti-oxydant naturel
-Kératine : la structure du cheveu",Kit 360ML (3x120ml),120ML x3,,"€12,00",18.000,€45.16,"€49,00",KEK001,2.509
+Kératine : la structure du cheveu",Kit 360ML (3x120ml),120ML x3,,"€12,00",18.000,€45.16,"€49,00",KEK001,2.509,SOIKGTANINKIT
 FB,Gamme Renforcateur,Acide hyaluronique et Biotine,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme renforcateur à la Kératine, acide yaluronique et Biotine, sans sulfates, pour cheveux secs fragiles et cassants.
-Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Shampooing FB,500ML,,"€3,35",5.025,€11.89,"€12,90",K41001,2.366
+Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Shampooing FB,500ML,,"€3,35",5.025,€11.89,"€12,90",K41001,2.366,SHPKGFBIOT500
 FB,Gamme Renforcateur,Acide hyaluronique et Biotine,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme renforcateur à la Kératine, acide yaluronique et Biotine, sans sulfates, pour cheveux secs fragiles et cassants.
-Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Shampooing FB,1000ML,,"€4,95",7.425,€16.50,"€17,90",K41005,2.222
+Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Shampooing FB,1000ML,,"€4,95",7.425,€16.50,"€17,90",K41005,2.222,SHPKGFBIOT1LT
 FB,Gamme Renforcateur,Acide hyaluronique et Biotine,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme renforcateur à la Kératine, acide yaluronique et Biotine, sans sulfates, pour cheveux secs fragiles et cassants.
-Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Shampooing FB,250ML,,"€1,85",2.775,€8.20,"€8,90",K41004,2.956
+Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Shampooing FB,250ML,,"€1,85",2.775,€8.20,"€8,90",K41004,2.956,SHPKGFBIOT250
 FB,Gamme Renforcateur,Acide hyaluronique et Biotine,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme renforcateur à la Kératine, acide yaluronique et Biotine, sans sulfates, pour cheveux secs fragiles et cassants.
-Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Sérum FB,100ML,,"€3,95",5.925,€13.73,"€14,90",K41003,2.318
+Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Sérum FB,100ML,,"€3,95",5.925,€13.73,"€14,90",K41003,2.318,SERKGFBIOT100
 FB,Gamme Renforcateur,Acide hyaluronique et Biotine,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme renforcateur à la Kératine, acide yaluronique et Biotine, sans sulfates, pour cheveux secs fragiles et cassants.
-Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Masque FB,500ML,,"€2,45",3.675,€10.05,"€10,90",K41002,2.734
+Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Masque FB,500ML,,"€2,45",3.675,€10.05,"€10,90",K41002,2.734,MASKGFBIOT500
 FB,Gamme Renforcateur,Acide hyaluronique et Biotine,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme renforcateur à la Kératine, acide yaluronique et Biotine, sans sulfates, pour cheveux secs fragiles et cassants.
-Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Masque FB,1000ML,,"€3,65",5.475,€14.65,"€15,90",K41006,2.677
+Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Masque FB,1000ML,,"€3,65",5.475,€14.65,"€15,90",K41006,2.677,MASKGFBIOT1LT
 FB,Gamme Renforcateur,Acide hyaluronique et Biotine,"Pour cheveux abîmés, élimine l'effet crépu et donne de l'éclat.","La gamme renforcateur à la Kératine, acide yaluronique et Biotine, sans sulfates, pour cheveux secs fragiles et cassants.
-Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Crème de soin FB,200ML,,"€2,25",3.375,€10.05,"€10,90",K41007,2.977
-LISSAGE PREMIUM,Lissage Brésilien,"Kératine, Tanin & Acide Hyaluronique",,,Kit 360ML (3x120ml),120ML x3,imgi_30_.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/oo-lsQLnFc-s5iwpYyeZ7g/Yo-XukaXGaVP3J-Lz3EmYUbBT7KotP7Pf9vyLq9qTDIIQdOwXSiJDWCH36hIACbyctab0lb9RNmcQVUe7FQBGzPxnMjGgaTMpGa39OwyzLmW_PST-5sWGtT9RhXzsUMTRzp_PNiHCycDOqWLE49rwsoCDEmlanIYi2rjs6m0zrE/AIb2hzaach2pmY1aePdUXBUmKPzl8Zn662iALNfUSHk),"€12,50",18.750,€45.16,"€49,00",KER001,2.409
+Renforce le suir chevelu, soigne la re capillaire et restaure l'élasticité et sa force naturelle pour une action anti-casse.",Crème de soin FB,200ML,,"€2,25",3.375,€10.05,"€10,90",K41007,2.977,CCFKGFBIOT200
+LISSAGE PREMIUM,Lissage Brésilien,"Kératine, Tanin & Acide Hyaluronique",,,Kit 360ML (3x120ml),120ML x3,imgi_30_.jpg (https://v5.airtableusercontent.com/v3/u/51/51/1774454400000/oo-lsQLnFc-s5iwpYyeZ7g/Yo-XukaXGaVP3J-Lz3EmYUbBT7KotP7Pf9vyLq9qTDIIQdOwXSiJDWCH36hIACbyctab0lb9RNmcQVUe7FQBGzPxnMjGgaTMpGa39OwyzLmW_PST-5sWGtT9RhXzsUMTRzp_PNiHCycDOqWLE49rwsoCDEmlanIYi2rjs6m0zrE/AIb2hzaach2pmY1aePdUXBUmKPzl8Zn662iALNfUSHk),"€12,50",18.750,€45.16,"€49,00",KER001,2.409,SOIKGPREMI120
 MONOÏ,Hydratant Vegan,Monoï & Vanille,Hydrate et répare les longueurs sans alourdir. Cuirs chevelus sensibles.,"Sa formulation végan, spécialement conçue à base de monoï et de vanille, hydrate en
 profondeur, renforce la fibre capillaire, répare les longueurs abîmées.
 Avec ses propriétés adoucissantes, la vanille apporte de la souplesse et un éclat naturel à la
 chevelure.
-Idéal pour les cuirs chevelus sensibles, il nettoie sans alourdir ni irriter.",Shampooing-Douche Monoï,500ML,,"€3,35",5.025,€11.89,"€12,90",K52001,2.366
+Idéal pour les cuirs chevelus sensibles, il nettoie sans alourdir ni irriter.",Shampooing-Douche Monoï,500ML,,"€3,35",5.025,€11.89,"€12,90",K52001,2.366,SHPKGKGGMO500
 MONOÏ,Hydratant Vegan,Monoï & Vanille,Hydrate et répare les longueurs sans alourdir. Cuirs chevelus sensibles.,"Sa formulation végan, spécialement conçue à base de monoï et de vanille, hydrate en
 profondeur, renforce la fibre capillaire, répare les longueurs abîmées.
 Avec ses propriétés adoucissantes, la vanille apporte de la souplesse et un éclat naturel à la
 chevelure.
-Idéal pour les cuirs chevelus sensibles, il nettoie sans alourdir ni irriter.",Sérum Monoï,100ML,,"€3,95",5.925,€13.73,"€14,90",K52003,2.318
+Idéal pour les cuirs chevelus sensibles, il nettoie sans alourdir ni irriter.",Sérum Monoï,100ML,,"€3,95",5.925,€13.73,"€14,90",K52003,2.318,SERKGKGGMO100
 MONOÏ,Hydratant Vegan,Monoï & Vanille,Hydrate et répare les longueurs sans alourdir. Cuirs chevelus sensibles.,"Sa formulation végan, spécialement conçue à base de monoï et de vanille, hydrate en
 profondeur, renforce la fibre capillaire, répare les longueurs abîmées.
 Avec ses propriétés adoucissantes, la vanille apporte de la souplesse et un éclat naturel à la
 chevelure.
-Idéal pour les cuirs chevelus sensibles, il nettoie sans alourdir ni irriter.",Crème Monoï,200ML,,"€2,35",3.525,€10.05,"€10,90",K52004,2.850
+Idéal pour les cuirs chevelus sensibles, il nettoie sans alourdir ni irriter.",Crème Monoï,200ML,,"€2,35",3.525,€10.05,"€10,90",K52004,2.850,CCFKGKGGMO200
 SV,Gamme Violet Déjaunisseur,Silver Protect System à la Kératine,"Réduit les reflets jaunes sur cheveux blonds, blancs ou gris.","La gamme Silver Protect System anti jaunissement sans sulfate à la kératine.
 Idéale, pour cheveux blonds ou blanc, gris et méchés.
-Réduis les reflets jaunes non désirés sur les cheveux gris, décolorés ou super éclaircis.",Shampoing SV,500ML,,"€3,85",5.775,€12.81,"€13,90",K53001,2.218
+Réduis les reflets jaunes non désirés sur les cheveux gris, décolorés ou super éclaircis.",Shampoing SV,500ML,,"€3,85",5.775,€12.81,"€13,90",K53001,2.218,SHPKGSVSVL500
 SV,Gamme Violet Déjaunisseur,Silver Protect System à la Kératine,"Réduit les reflets jaunes sur cheveux blonds, blancs ou gris.","La gamme Silver Protect System anti jaunissement sans sulfate à la kératine.
 Idéale, pour cheveux blonds ou blanc, gris et méchés.
-Réduis les reflets jaunes non désirés sur les cheveux gris, décolorés ou super éclaircis.",Sérum SV,100ML,,"€3,95",5.925,€13.73,"€14,90",K53003,2.318
+Réduis les reflets jaunes non désirés sur les cheveux gris, décolorés ou super éclaircis.",Sérum SV,100ML,,"€3,95",5.925,€13.73,"€14,90",K53003,2.318,SERKGSVSVL100
 SV,Gamme Violet Déjaunisseur,Silver Protect System à la Kératine,"Réduit les reflets jaunes sur cheveux blonds, blancs ou gris.","La gamme Silver Protect System anti jaunissement sans sulfate à la kératine.
 Idéale, pour cheveux blonds ou blanc, gris et méchés.
-Réduis les reflets jaunes non désirés sur les cheveux gris, décolorés ou super éclaircis.",Masque SV,500ML,,"€2,85",4.275,€10.05,"€10,90",K53002,2.350
+Réduis les reflets jaunes non désirés sur les cheveux gris, décolorés ou super éclaircis.",Masque SV,500ML,,"€2,85",4.275,€10.05,"€10,90",K53002,2.350,MASKGSVSVL500
 XL,Gamme Liss Intense Anti-frizz,Kératine et Protéine de soie,Pour cheveux lisses et soyeux.,"La gamme liss intense anti-friss sans sulfates à la ératine et proté ne de soie.
 Idéal pour cheveux secs, rebelles, difficiles à lisser.
 Nourrit et restaure la re abimée, avec sa formule enrichie aux protéines de soie, détend la fibre sans alourdir le cheveu.
-Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Shampooing XL,500ML,,"€3,35",5.025,€11.89,"€12,90",K23002,2.366
+Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Shampooing XL,500ML,,"€3,35",5.025,€11.89,"€12,90",K23002,2.366,SHPKGXLISS500
 XL,Gamme Liss Intense Anti-frizz,Kératine et Protéine de soie,Pour cheveux lisses et soyeux.,"La gamme liss intense anti-friss sans sulfates à la ératine et proté ne de soie.
 Idéal pour cheveux secs, rebelles, difficiles à lisser.
 Nourrit et restaure la re abimée, avec sa formule enrichie aux protéines de soie, détend la fibre sans alourdir le cheveu.
-Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Shampooing XL,1000ML,,"€4,95",7.425,€16.50,"€17,90",K23003,2.222
+Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Shampooing XL,1000ML,,"€4,95",7.425,€16.50,"€17,90",K23003,2.222,SHPKGXLISS1LT
 XL,Gamme Liss Intense Anti-frizz,Kératine et Protéine de soie,Pour cheveux lisses et soyeux.,"La gamme liss intense anti-friss sans sulfates à la ératine et proté ne de soie.
 Idéal pour cheveux secs, rebelles, difficiles à lisser.
 Nourrit et restaure la re abimée, avec sa formule enrichie aux protéines de soie, détend la fibre sans alourdir le cheveu.
-Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Shampooing XL,250ML,,"€1,85",2.775,€8.20,"€8,90",K23001,2.956
+Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Shampooing XL,250ML,,"€1,85",2.775,€8.20,"€8,90",K23001,2.956,SHPKGXLISS250
 XL,Gamme Liss Intense Anti-frizz,Kératine et Protéine de soie,Pour cheveux lisses et soyeux.,"La gamme liss intense anti-friss sans sulfates à la ératine et proté ne de soie.
 Idéal pour cheveux secs, rebelles, difficiles à lisser.
 Nourrit et restaure la re abimée, avec sa formule enrichie aux protéines de soie, détend la fibre sans alourdir le cheveu.
-Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Sérum XL,100ML,,"€3,95",5.925,€13.73,"€14,90",K23006,2.318
+Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Sérum XL,100ML,,"€3,95",5.925,€13.73,"€14,90",K23006,2.318,SERKGXLISS100
 XL,Gamme Liss Intense Anti-frizz,Kératine et Protéine de soie,Pour cheveux lisses et soyeux.,"La gamme liss intense anti-friss sans sulfates à la ératine et proté ne de soie.
 Idéal pour cheveux secs, rebelles, difficiles à lisser.
 Nourrit et restaure la re abimée, avec sa formule enrichie aux protéines de soie, détend la fibre sans alourdir le cheveu.
-Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Masque XL,500ML,,"€2,45",3.675,€10.05,"€10,90",K23004,2.734
+Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Masque XL,500ML,,"€2,45",3.675,€10.05,"€10,90",K23004,2.734,MASKGXLISS500
 XL,Gamme Liss Intense Anti-frizz,Kératine et Protéine de soie,Pour cheveux lisses et soyeux.,"La gamme liss intense anti-friss sans sulfates à la ératine et proté ne de soie.
 Idéal pour cheveux secs, rebelles, difficiles à lisser.
 Nourrit et restaure la re abimée, avec sa formule enrichie aux protéines de soie, détend la fibre sans alourdir le cheveu.
-Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Masque XL,1000ML,,"€3,65",5.475,€14.65,"€15,90",K23005,2.677
+Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Masque XL,1000ML,,"€3,65",5.475,€14.65,"€15,90",K23005,2.677,MASKGXLISS1LT
 XL,Gamme Liss Intense Anti-frizz,Kératine et Protéine de soie,Pour cheveux lisses et soyeux.,"La gamme liss intense anti-friss sans sulfates à la ératine et proté ne de soie.
 Idéal pour cheveux secs, rebelles, difficiles à lisser.
 Nourrit et restaure la re abimée, avec sa formule enrichie aux protéines de soie, détend la fibre sans alourdir le cheveu.
-Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Crème Liss XL,200ML,,"€2,65",3.975,€10.05,"€10,90",K23007,2.527
+Elimine l'effet de frisottis et procure soyance et brillance pour un effet lisse immédiat.",Crème Liss XL,200ML,,"€2,65",3.975,€10.05,"€10,90",K23007,2.527,CCFKGXLISS200

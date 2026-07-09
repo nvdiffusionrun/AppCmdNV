@@ -266,7 +266,7 @@ export async function loadKeragoldData() {
         // Group by "Gamme"
         const groupedData = data.reduce((groups, item) => {
             const gamme = item['Gamme'] || 'Autre';
-            const code = item['Référence (SKU)'];
+            const code = item['Code Article Machine'];
             
             // Si l'article n'existe pas dans la base principale, on l'ajoute
             // pour permettre l'ajout au panier.
@@ -294,7 +294,7 @@ export async function loadKeragoldData() {
             groups[gamme].products.push({
                 name: item['Produit'],
                 contenance: item['Contenance'],
-                code: item['Référence (SKU)'],
+                code: item['Code Article Machine'],
                 priceTTC: item['Prix TTC']
             });
             return groups;
